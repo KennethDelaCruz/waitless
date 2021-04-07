@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from './components/button.jsx';
+import Navigation from './components/navigation.jsx';
+import Header from './components/header.jsx'
 
 
 class App extends React.Component {
   render(){
     return (
       <>
-        <Button />
+        <Header />
+        <Navigation />
       </>
     )
   }
