@@ -1,25 +1,30 @@
 require('dotenv/config');
-const errorMiddleware = require('./error-middleware.js');
 const express = require('express');
-const ClientError = require('./client-error.js');
+const staticMiddleware = require('./static-middleware');
+const yelp = require('yelp-fusion');
+const client = yelp.client(process.env.TOKEN_SECRET);
 
 const app = express();
-const jsonMiddleware = express.json();
-
-app.use(jsonMiddleware);
-
-const port = process.env.PORT;
-console.log(port);
-
-// need to complete the first app.get (which will make a request to yelp-api)
-
-app.listen(process.env.PORT, () => {
-  console.log(`server listening to ${process.env.PORT}`);
-});
-
-const staticMiddleware = require('./static-middleware');
 
 app.use(staticMiddleware);
+app.use(express.json());
+app.put('/api/yelp-search', (req, res) => {
+  // req.headers.body contains lat and long
+  const { longitude, latitude, limit } = req.body;
+  const searchRequest = {
+    attributes: ['reservation'],
+    longitude,
+    latitude,
+    radius: 10000,
+    limit
+  };
+  client.search(searchRequest)
+    .then(response => {
+      const businesses = JSON.stringify(response.jsonBody.businesses, null, 4);
+      res.status(200).json(businesses);
+    })
+    .catch(err => console.error(err));
+});
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
