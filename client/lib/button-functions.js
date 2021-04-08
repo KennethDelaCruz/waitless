@@ -1,5 +1,8 @@
-export default function geoSearch() {
 
+export default function geoSearch() {
+  // disregard most of the code that is in the bottom
+  // it will need to be replaced with proper code that will talk request
+  // from inhouse server > yelp server > inhouse server > back to client
     const data = {
      location: 'carson, ca',
      limit:10
