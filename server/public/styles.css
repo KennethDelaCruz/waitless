@@ -1,0 +1,32 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #7c9473;
+  border-bottom: 1px solid black;
+  box-shadow: 2px 2px 4px grey;
+  margin-bottom: 20px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  width: 150px;
+  height: 150px;
+  background-color: #e8eae6;
+  border: none;
+  box-shadow: 2px 2px 2px gray;
+  font-size: 24px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+}

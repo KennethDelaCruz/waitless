@@ -1,11 +1,12 @@
 import React from 'react';
-import Button from '../elements/button.jsx';
 import { geoSearch } from '../lib';
 
 class Navigation extends React.Component {
   render() {
     return (
-      <button className="buttons" onClick={geoSearch}>This is a test</button>
+      <div className="navigation">
+        <button className="buttons" onClick={geoSearch}>Search by Geolocation</button>
+      </div>
     );
   }
 }

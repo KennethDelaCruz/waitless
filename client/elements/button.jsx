@@ -1,14 +1,11 @@
 import React from 'react';
 
 class Button extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
   render() {
     return (
-      <button type="button" className="buttons">{this.props.text}</button>
-    )
+      <button type="button" className="buttons"><i className="fas fa-map-marker-alt"></i></button>
+    );
   }
 }
 
