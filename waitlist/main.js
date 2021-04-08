@@ -150,22 +150,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ geoSearch)
 /* harmony export */ });
 function geoSearch() {
-  const success = position => {
-    const {
-      longitude,
-      latitude
-    } = position.coords;
-    console.log("Longitude:", longitude, "Latitude", latitude);
+  const data = {
+    location: 'carson, ca',
+    limit: 10
   };
-
-  const failure = error => {
-    console.error(err);
+  const searchRequest = {
+    method: "GET",
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': "application/json",
+      Authorization: `Bearer qENdnEeMTb_oC38tACiv1NPdkHXDbUx_XHPzAmrCZUYUt5xm9E4qWdZrQc-dbI2S58Z2SlEabiSDGvu9_BWcTtIRCO-LRtDmsErnbRtepX34mMD4-jYOWbhCJUtuYHYx`,
+      body: JSON.stringify(data)
+    }
   };
-
-  const options = {
-    enableHighAccuracy: true
-  };
-  navigator.geolocation.getCurrentPosition(success, failure, options);
+  fetch('https://api.yelp.com/v3/businesses/search', searchRequest).then(response => response.json()).then(data => {
+    console.log(data);
+  }).catch(err => console.error(err));
 }
 
 /***/ }),
