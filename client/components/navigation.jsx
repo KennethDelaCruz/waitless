@@ -5,7 +5,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <div className="navigation">
-        <button className="buttons" onClick={geoSearch}>Search by Geolocation</button>
+        <button className="buttons" onClick={geoSearch}><i className="fas fa-map-marker-alt"></i></button>
       </div>
     );
   }

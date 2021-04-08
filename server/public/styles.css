@@ -30,3 +30,8 @@ body {
   font-weight: bold;
   border-radius: 5px;
 }
+
+.fa-map-marker-alt {
+  font-size: 110px;
+  color: rgb(110, 110, 110);
+}
