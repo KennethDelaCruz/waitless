@@ -4,6 +4,12 @@ import Header from './components/header.jsx';
 import parseRoute from './lib/parse-route.js';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      route: parseRoute(window.location.hash)
+    };
+  }
 
   componentDidMount() {
     window.addEventListener('hashchange', event => {
