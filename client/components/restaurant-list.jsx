@@ -20,19 +20,25 @@ import React from 'react';
 // }
 
 function Restaurant(props) {
+  const style = {
+    backgroundImage: `url(${props.info.image_url})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    'border-radius': '5px',
+    'box-shadow': '2px 2px 2px grey'
+  };
   return (
     <div className="column-half restaurant-card">
-      <img className="restaurant-image" src={props.info.image_url} alt={`restaurant picture for ${props.name}`} />
-      <div className="description">
+      <div className="image-container" style={style}/>
         <h4>{props.info.name}</h4>
-      </div>
     </div>
   );
 }
 
 function RestaurantList(props) {
   return (
-    <div className="restaurant-list">
+    <div className="container restaurant-list">
       {props.restaurants.map((restaurant, i) => {
         return <Restaurant key={i} info={restaurant} />;
       })}

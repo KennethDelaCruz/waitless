@@ -37,3 +37,20 @@ header {
   font-size: 110px;
   color: rgb(110, 110, 110);
 }
+
+.restaurant-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image-container {
+  height: 150px;
+  width: 150px;
+}
+
+.restaurant-image {
+  width: 200px;
+  height: ;
+}
