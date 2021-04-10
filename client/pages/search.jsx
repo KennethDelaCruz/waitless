@@ -1,16 +1,21 @@
 import React from 'react';
 
-export default class Catalog extends React.Component {
+export default class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { restaurants: [] };
+    this.state = {
+      longitude: null,
+      latitude: null,
+      restaurants: [],
+      isLoading: true
+    };
   }
 
   componentDidMount() {
-    function success(pos) {
+    navigator.geolocation.getCurrentPosition(pos => {
       const { longitude, latitude } = pos.coords;
-      const data = {
-        attributes: ['reservation'],
+      const body = {
+        attribute: ['reservation'],
         longitude,
         latitude,
         limit: 10
@@ -20,27 +25,18 @@ export default class Catalog extends React.Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(body)
       };
       fetch('api/yelp-search', searchRequest)
         .then(response => response.json())
         .then(data => {
-          this.setState({ restaurants: data });
+          this.setState({ restaurants: data, isLoading: false });
         })
         .catch(err => console.error(err));
-    }
-    // if failed, it should bring the user back to the navigation screen
-
-    function failure(err) {
-      console.error(err);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, failure);
+    });
   }
 
   render() {
-    return (
-      <button></button>
-    );
+    return this.state.isLoading ? <p>loading..</p> : <p>finished loading</p>;
   }
 }

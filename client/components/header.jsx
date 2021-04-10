@@ -11,9 +11,13 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <div className="header">
-        <img className="logo" src="/images/waitless.png"></img>
-      </div>
+      <header>
+        <div className="column-full container">
+          <a href="#">
+            <img className="logo" src="/images/waitless.png"></img>
+          </a>
+        </div>
+      </header>
     );
   }
 }

@@ -4,7 +4,7 @@ body {
   padding: 0;
 }
 
-.header {
+header {
   display: flex;
   align-items: center;
   height: 60px;
@@ -16,6 +16,7 @@ body {
 
 .navigation {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -29,6 +30,7 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   border-radius: 5px;
+  margin: 10px;
 }
 
 .fa-map-marker-alt {
