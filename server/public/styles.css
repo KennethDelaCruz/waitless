@@ -47,7 +47,6 @@ header {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  border: 2px solid black;
   border-radius: 5px;
   background-color: #e8eae6;
   box-shadow: 2px 2px rgb(110, 110, 110);
@@ -56,11 +55,13 @@ header {
 
 .image-container {
   height: 120px;
-  width: 120px;
-  margin-right: 5px;
+  width: calc(92% / 3);
+  margin: 5px;
 }
 
 .description {
+  font-family: 'Lato', sans-serif;
+  color: #505050;
   height: 100%;
-  width: 50%;
+  width: calc((90% / 3) * 2);
 }
