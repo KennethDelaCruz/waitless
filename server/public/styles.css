@@ -38,19 +38,29 @@ header {
   color: rgb(110, 110, 110);
 }
 
-.restaurant-card {
+.restaurant-list {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
 }
 
-.image-container {
-  height: 150px;
-  width: 150px;
+.restaurant-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #e8eae6;
+  box-shadow: 2px 2px rgb(110, 110, 110);
+  margin: 5px;
 }
 
-.restaurant-image {
-  width: 200px;
-  height: ;
+.image-container {
+  height: 120px;
+  width: 120px;
+  margin-right: 5px;
+}
+
+.description {
+  height: 100%;
+  width: 50%;
 }
