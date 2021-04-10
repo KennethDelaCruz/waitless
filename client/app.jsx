@@ -26,7 +26,7 @@ class App extends React.Component {
       return <Home />;
     }
     if (route.path === 'restaurants') {
-      return <Search restaurants={this.state.restaurants}/>;
+      return <Search />;
     }
   }
 

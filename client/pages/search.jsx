@@ -1,4 +1,5 @@
 import React from 'react';
+import RestaurantList from '../components/restaurant-list';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -30,13 +31,15 @@ export default class Search extends React.Component {
       fetch('api/yelp-search', searchRequest)
         .then(response => response.json())
         .then(data => {
-          this.setState({ restaurants: data, isLoading: false });
+          this.setState({ restaurants: data.jsonBody.businesses, isLoading: false });
         })
         .catch(err => console.error(err));
     });
   }
 
   render() {
-    return this.state.isLoading ? <p>loading..</p> : <p>finished loading</p>;
+    return this.state.isLoading
+      ? <p>loading..</p>
+      : <RestaurantList restaurants={this.state.restaurants}/>;
   }
 }
