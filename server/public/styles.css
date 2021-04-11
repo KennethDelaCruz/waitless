@@ -65,3 +65,32 @@ header {
   height: 100%;
   width: calc((90% / 3) * 2);
 }
+
+.fa-star,
+.fa-star-half-alt {
+  font-size: 14px;
+}
+
+.hot-time {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  border-radius: 5px;
+  padding: 0 4px;
+}
+
+.short-wait {
+  background-color: #68ac5d;
+}
+
+.medium-wait {
+  background-color: ;
+}
+
+.description > p {
+  font-family: 'Lato', sans-serif;
+}
+
+.wait-time {
+  margin: 5px 0;
+  font-weight: bold;
+}
