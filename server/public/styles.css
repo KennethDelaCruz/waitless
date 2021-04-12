@@ -33,7 +33,7 @@ header {
   margin: 10px;
 }
 
-.fa-map-marker-alt {
+.nav-icons {
   font-size: 110px;
   color: rgb(110, 110, 110);
 }
@@ -51,6 +51,7 @@ header {
   background-color: #e8eae6;
   box-shadow: 2px 2px rgb(110, 110, 110);
   margin: 5px;
+  padding: 20px 0;
 }
 
 .image-container {
@@ -93,4 +94,13 @@ header {
 .wait-time {
   margin: 5px 0;
   font-weight: bold;
+}
+
+.restaurant-image {
+  height: 120px;
+  width: calc(92% / 3);
+  object-fit: cover;
+  margin: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgb(110, 110, 110);
 }

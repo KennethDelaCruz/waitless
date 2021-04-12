@@ -10,7 +10,6 @@ class App extends React.Component {
     this.state = {
       route: parseRoute(window.location.hash)
     };
-    this.renderPage = this.renderPage.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +24,7 @@ class App extends React.Component {
     if (route.path === '') {
       return <Home />;
     }
-    if (route.path === 'restaurants') {
+    if (route.path === 'geosearch-restaurants') {
       return <Search />;
     }
   }

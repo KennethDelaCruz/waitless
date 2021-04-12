@@ -1,78 +1,16 @@
 import React from 'react';
 
 function Rating(number) {
-  if (number === 1) {
-    return <i className="fas fa-star"></i>;
-  } else if (number === 1.5) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star-half-alt"></i>
-      </>
-    );
-  } else if (number === 2) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-      </>
-    );
-  } else if (number === 2.5) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star-half-alt"></i>
-      </>
-    );
-  } else if (number === 3) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-      </>
-    );
-  } else if (number === 3.5) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star-half-alt"></i>
-      </>
-    );
-  } else if (number === 4) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-      </>
-    );
-  } else if (number === 4.5) {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star-half-alt"></i>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-        <i className="fas fa-star"></i>
-      </>
-    );
-  }
-
+  const starElements = Array(5).fill(null).map((i, index) => {
+    if (index + 1 <= number) {
+      return <i key={i} className="fas fa-star" />;
+    }
+    if (index + 0.5 === number) {
+      return <i key ={i}className="fas fa-star-half-alt" />;
+    }
+    return <i key={i} className="far fa-star" />;
+  });
+  return starElements;
 }
 
 export default Rating;

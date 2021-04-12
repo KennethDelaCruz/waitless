@@ -3,17 +3,9 @@ import Rating from '../lib/rating.js';
 import hotTimes from '../lib/hot-times.js';
 
 function Restaurant(props) {
-  const style = {
-    backgroundImage: `url(${props.info.image_url})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    borderRadius: '5px',
-    boxShadow: '2px 2px 2px rgb(110, 110, 110)'
-  };
   return (
     <>
-      <div className="image-container" style={style}/>
+      <img src={props.info.image_url} className="restaurant-image" />
       <div className="description" >
         <h4 style={{ marginBottom: 0 }}>{props.info.name}</h4>
         <p style={{ margin: 0 }}>
@@ -26,10 +18,6 @@ function Restaurant(props) {
           {props.info.categories.map(i => `${i.title}, `)}
         </p>
         <p className="wait-time">Current Wait: {hotTimes(20)}</p>
-
-      </div>
-      <div className={props.selected}>
-        <p>{'placeholder'}</p>
       </div>
     </>
   );
@@ -39,7 +27,6 @@ class RestaurantList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selected: null };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(i) {
