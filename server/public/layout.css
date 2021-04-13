@@ -24,11 +24,19 @@
   .favorite-list > li {
     width: 100%;
   }
+
+  .button-text {
+    display:none
+  }
 }
 
 @media screen and (min-width: 550px) {
   .favorite-list > li {
     width: calc(95% / 2);
+  }
+
+  .button-text{
+    display: none
   }
 }
 
@@ -49,5 +57,11 @@
 
   .favorite-list > li {
     width: calc(95% / 3);
+  }
+
+  .buttons {
+    width:300px;
+  }
+
   }
 }

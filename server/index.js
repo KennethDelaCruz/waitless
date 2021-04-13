@@ -3,8 +3,8 @@ const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const yelp = require('yelp-fusion');
 const client = yelp.client(process.env.TOKEN_SECRET);
-
 const app = express();
+const pg = require('pg');
 
 app.use(staticMiddleware);
 app.use(express.json());

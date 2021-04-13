@@ -20,7 +20,8 @@ function Button(props) {
   return (
     <a
       href={props.hash}>
-        <button className="buttons" onClick={props.handleClick}>{props.icon}</button>
+        <button className="buttons" onClick={props.handleClick}>{props.icon}
+        </button>
     </a>
   );
 }
