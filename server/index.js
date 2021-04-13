@@ -5,9 +5,14 @@ const yelp = require('yelp-fusion');
 const client = yelp.client(process.env.TOKEN_SECRET);
 const app = express();
 const pg = require('pg');
+const ClientError = require('./client-error');
+const errorMiddleware = require('./error-middleware');
 
 const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 app.use(staticMiddleware);
@@ -30,14 +35,48 @@ app.put('/api/yelp-search', (req, res) => {
     .catch(err => console.error(err));
 });
 // this needs to be changed to post, for users to be able to add a new      reservation
-app.post('/api/restaurant-waitlist', (req, res) => {
-  const { restaurantId } = req.body;
+app.get('/api/restaurantId/:restaurant', (req, res, next) => {
+  const restaurant = req.params.restaurant;
   const sql = `
-  select from "reservations"
-  where "restaurantId" = $1
-  returning *;`;
-  const query = [restaurantId];
+  select "restaurantId"
+  from "restaurants"
+  where "restaurantName" = $1
+  `;
+  const params = [restaurant];
+  db.query(sql, params)
+    .then(result => {
+      const output = result.rows[0];
+      if (!output) {
+        throw new ClientError(404, 'cannot find restaurantId');
+      } else {
+        res.json(output);
+      }
+    })
+    .catch(err => next(err));
 });
+
+app.get('/api/waitlist/:Id', (req, res, next) => {
+  const Id = parseInt(req.params.Id);
+  const sql = `
+  select count(*)
+  from "reservations"
+  where "restaurantId" = $1
+  `;
+  const params = [Id];
+  db.query(sql, params)
+    .then(result => {
+      const count = result.rows[0];
+      if (!count) {
+        throw new ClientError(404, 'cannot find waitlist');
+      } else {
+        res.json(count);
+      }
+
+    })
+    .catch(err => next(err));
+});
+
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console

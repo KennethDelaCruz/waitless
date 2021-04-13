@@ -15,17 +15,18 @@ class JoinForm extends React.Component {
   }
 
   handleTextChange(event) {
+
     this.setState({ name: event.target.value });
   }
 
   handleSelectChange(event) {
-    this.setState({ 'party-size': event.target.value });
+    this.setState({ 'party-size': parseInt(event.target.value) });
+    console.log(typeof parseInt(event.target.value));
   }
 
   handleSubmit() {
     event.preventDefault();
     console.log('this worked');
-    this.setState({ toggle: false });
   }
 
   render() {

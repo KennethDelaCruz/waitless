@@ -93,6 +93,10 @@ header {
   background-color: ;
 }
 
+.unavailable-time {
+  background-color:black
+}
+
 .description > p {
   font-family: 'Lato', sans-serif;
 }

@@ -11,7 +11,10 @@ class Restaurant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggle: false
+      toggle: false,
+      restaurantId: null,
+      waitlist: null,
+      isLoading: true
     };
   }
 
@@ -25,7 +28,29 @@ class Restaurant extends React.Component {
     }
   }
 
+  componentDidMount() {
+    fetch(`/api/restaurantId/${this.props.info.name}`)
+      .then(response => response.json())
+      .then(data => {
+        const { restaurantId } = data;
+        this.setState({ restaurantId });
+        fetch(`/api/waitlist/${this.state.restaurantId}`)
+          .then(response => response.json())
+          .then(data => {
+            const waitlist = parseInt(data.count);
+            this.setState({ waitlist, isLoading: false });
+          });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+  }
+
   render() {
+    if (this.state.isLoading) {
+      return <p> loading....</p>;
+    }
     return (
       <>
         <img src={this.props.info.image_url} className="restaurant-image" />
@@ -40,13 +65,14 @@ class Restaurant extends React.Component {
           <p style={{ margin: '5px 0px', fontSize: '12px' }}>
             {this.props.info.categories.map(i => `${i.title}, `)}
           </p>
-          <p className="wait-time">Current Wait: {hotTimes(20)}</p>
+          <p className="wait-time">Current Wait: {hotTimes(this.state.waitlist)}</p>
           <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>Join Waitlist</button>
         </div>
         <div onClick={() => this.modalClose()} className={this.state.toggle ? 'form-modal' : 'form-modal hidden'} >
-          <JoinForm name={this.props.info.name}/>
+          <JoinForm name={this.props.info.name} />
         </div>
       </>
+
     );
   }
 }
