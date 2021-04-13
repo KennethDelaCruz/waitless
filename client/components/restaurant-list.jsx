@@ -1,6 +1,7 @@
 import React from 'react';
 import Rating from '../lib/rating.js';
 import hotTimes from '../lib/hot-times.js';
+import JoinForm from '../elements/join-form.jsx';
 
 // create a new component for the form, and add a prop and state for the restaurnt
 // to tackle Restaurant wait time, add a Componentdidmount to fetch the api for the waittimes,
@@ -43,24 +44,7 @@ class Restaurant extends React.Component {
           <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>Join Waitlist</button>
         </div>
         <div onClick={() => this.modalClose()} className={this.state.toggle ? 'form-modal' : 'form-modal hidden'} >
-          <div className="form-container column-half">
-            <form >
-              <label htmlFor="name">Name:</label>
-              <input type="text" id="name" name="name" required></input>
-              <select id="party-size">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-              </select>
-            </form>
-          </div>
+          <JoinForm name={this.props.info.name}/>
         </div>
       </>
     );
@@ -75,13 +59,15 @@ class RestaurantList extends React.Component {
   }
 
   handleClick(i) {
-    if (event.target.tagName === 'BUTTON') {
-      return;
-    }
-    if (this.state.selected === i) {
-      this.setState({ selected: null });
-    } else {
-      this.setState({ selected: i });
+
+    if (event.target.className === 'column-half restaurant-card' ||
+    event.target.className === 'description' ||
+    event.target.className === 'restaurant-image') {
+      if (this.state.selected === i) {
+        this.setState({ selected: null });
+      } else {
+        this.setState({ selected: i });
+      }
     }
 
   }
