@@ -2,14 +2,26 @@ import React from 'react';
 import Rating from '../lib/rating.js';
 import hotTimes from '../lib/hot-times.js';
 
+// create a new component for the form, and add a prop and state for the restaurnt
+// to tackle Restaurant wait time, add a Componentdidmount to fetch the api for the waittimes,
+// and add another state that will determine when to render teh page/ loading or not loading etc..
+
 class Restaurant extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { toggle: false };
+    this.state = {
+      toggle: false
+    };
   }
 
   handleJoin(restaurant) {
     this.setState({ toggle: true });
+  }
+
+  modalClose() {
+    if (this.state.toggle && event.target.className === 'form-modal') {
+      this.setState({ toggle: false });
+    }
   }
 
   render() {
@@ -28,16 +40,27 @@ class Restaurant extends React.Component {
             {this.props.info.categories.map(i => `${i.title}, `)}
           </p>
           <p className="wait-time">Current Wait: {hotTimes(20)}</p>
-          <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>this is a test</button>
+          <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>Join Waitlist</button>
         </div>
-        <div className={
-          this.state.toggle ? 'waitlist-form' : 'waitlist-form hidden'
-        }>
-          {/* adding styling to form for it to take the whole screen
-          and when user taps the 'gray' area, let it set toggle to false */}
-          <form>
-            <input type="text"></input>
-          </form>
+        <div onClick={() => this.modalClose()} className={this.state.toggle ? 'form-modal' : 'form-modal hidden'} >
+          <div className="form-container column-half">
+            <form >
+              <label htmlFor="name">Name:</label>
+              <input type="text" id="name" name="name" required></input>
+              <select id="party-size">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </form>
+          </div>
         </div>
       </>
     );

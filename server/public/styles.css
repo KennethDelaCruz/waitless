@@ -15,7 +15,7 @@ header {
 }
 
 .hidden {
-  display:none;
+  display: none;
 }
 
 .navigation {
@@ -56,7 +56,7 @@ header {
   box-shadow: 2px 2px rgb(110, 110, 110);
   margin: 5px;
   padding: 20px 0;
-  height:150px;
+  height: 150px;
 }
 
 .image-container {
@@ -111,13 +111,30 @@ header {
 }
 
 .waitlist-button {
-  background-color: #7C9473;
+  background-color: #7c9473;
   box-shadow: 2px 2px 2px rgb(110, 110, 110);
-  font-family: 'Lato' , sans-serif;
-  color:white;
-  font-size:20px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+  font-size: 20px;
   width: 260px;
-  font-size: 16px;
   margin-top: 5px;
   border-radius: 5px;
+}
+
+.form-modal {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.form-container {
+  display: flex;
+  height: 300px;
+  width: 300px;
+  background-color: #e8eae6;
+  border-radius: 5px;
+  border: 2px solid #505050;
 }
