@@ -6,7 +6,12 @@ const client = yelp.client(process.env.TOKEN_SECRET);
 const app = express();
 const pg = require('pg');
 
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL
+});
+
 app.use(staticMiddleware);
+
 app.use(express.json());
 app.put('/api/yelp-search', (req, res) => {
   // req.headers.body contains lat and long
@@ -23,6 +28,15 @@ app.put('/api/yelp-search', (req, res) => {
       res.status(200).json(response);
     })
     .catch(err => console.error(err));
+});
+// this needs to be changed to post, for users to be able to add a new      reservation
+app.post('/api/restaurant-waitlist', (req, res) => {
+  const { restaurantId } = req.body;
+  const sql = `
+  select from "reservations"
+  where "restaurantId" = $1
+  returning *;`;
+  const query = [restaurantId];
 });
 
 app.listen(process.env.PORT, () => {

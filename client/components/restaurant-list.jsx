@@ -5,11 +5,11 @@ import hotTimes from '../lib/hot-times.js';
 class Restaurant extends React.Component {
   constructor(props) {
     super(props);
-    this.handleJoin = this.handleJoin.bind(this);
+    this.state = { toggle: false };
   }
 
-  handleJoin() {
-    console.log(this.props.info.name);
+  handleJoin(restaurant) {
+    this.setState({ toggle: true });
   }
 
   render() {
@@ -28,7 +28,16 @@ class Restaurant extends React.Component {
             {this.props.info.categories.map(i => `${i.title}, `)}
           </p>
           <p className="wait-time">Current Wait: {hotTimes(20)}</p>
-          <button className={this.props.buttonDisplay} onClick={this.handleJoin}>this is a test</button>
+          <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>this is a test</button>
+        </div>
+        <div className={
+          this.state.toggle ? 'waitlist-form' : 'waitlist-form hidden'
+        }>
+          {/* adding styling to form for it to take the whole screen
+          and when user taps the 'gray' area, let it set toggle to false */}
+          <form>
+            <input type="text"></input>
+          </form>
         </div>
       </>
     );
