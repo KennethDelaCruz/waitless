@@ -104,7 +104,7 @@ app.put('/api/edit-reservation', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const update = result.rows[0];
-      console.log(update);
+      res.status(200).json(update);
     });
 });
 

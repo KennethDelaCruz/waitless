@@ -197,9 +197,8 @@ header {
   border: 0;
   box-shadow: 4px 4px 4px rgba(110 110 110);
   height: 26px;
-  margin: 10px 0px 20px 0px;
+  margin: 10px 0 20px 0;
   font-size: 18px;
-
 }
 
 #name {
@@ -208,7 +207,7 @@ header {
 
 #update-name,
 #unique-code {
-  width:100%;
+  width: 100%;
 }
 
 #party-size {
@@ -278,6 +277,7 @@ header {
   width: 100%;
   text-align: center;
   font-size: 16px;
+  color: #505050;
 }
 
 .underline {
@@ -289,7 +289,7 @@ header {
 }
 
 .edit-container {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -297,7 +297,7 @@ header {
 .update-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   width: 100%;
   background-color: #e8eae6;
@@ -305,13 +305,14 @@ header {
   border: 0;
   height: auto;
   box-shadow: 4px 4px 4px rgb(110 110 110);
+  padding: 10px 0 20px 0;
 }
 
 .update-form {
   width: 90%;
-  padding: 20px 0px;
-  display:flex;
-  flex-wrap:wrap;
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .update-text,
@@ -321,13 +322,25 @@ header {
 }
 
 .party-text {
-  margin-right: 10px
+  margin-right: 10px;
 }
+
 .party-size-section {
-  width:100%;
-  display:flex;
-  flex-wrap:wrap;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
+
 .party-half {
-  width:50%;
+  width: 50%;
+}
+
+.complete-party {
+  text-align: center;
+}
+
+.complete-title {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
 }

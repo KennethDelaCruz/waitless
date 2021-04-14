@@ -1,5 +1,6 @@
 import React from 'react';
 import EditForm from '../components/edit-delete-form.jsx';
+import EditComplete from '../components/edit-complete.jsx';
 
 class ReservationForm extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class ReservationForm extends React.Component {
       partyUpdate: null,
       name: null,
       uniqueCode: null,
-      submitted: false
+      submitted: false,
+      restaurantName: null
     };
     this.handleBefore = this.handleBefore.bind(this);
     this.handleAfter = this.handleAfter.bind(this);
@@ -28,7 +30,7 @@ class ReservationForm extends React.Component {
   }
 
   handleName(event) {
-    this.setState({ name: event.target.value });
+    this.setState({ name: event.target.value.toUpperCase() });
   }
 
   handleCode(event) {
@@ -53,13 +55,21 @@ class ReservationForm extends React.Component {
     };
     fetch('/api/edit-reservation', req)
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        const { restaurantName } = data;
+        this.setState({ restaurantName, submitted: true });
+      })
       .catch(err => console.error(err));
   }
 
   render() {
+    if (this.state.submitted) {
+      return (
+        <EditComplete info={this.state} />
+      );
+    } else {
+      return (
 
-    return (
       <EditForm
         handleBefore={this.handleBefore}
         handleAfter={this.handleAfter}
@@ -67,7 +77,9 @@ class ReservationForm extends React.Component {
         handleCode={this.handleCode}
         handleSubmit={this.handleEdit}
       />
-    );
+      );
+    }
+
   }
 }
 
