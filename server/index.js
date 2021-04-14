@@ -91,6 +91,23 @@ app.post('/api/waitlist-reservation', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.put('/api/edit-reservation', (req, res, next) => {
+  const { name, partyBefore, partyUpdate, uniqueCode } = req.body;
+  const sql = `
+  update "reservations"
+  set "partySize" = $1
+  from "restaurants"
+  where "customerName" = $2 AND "uniqueCode" = $3 AND "partySize" = $4
+  returning *
+  `;
+  const params = [partyUpdate, name, uniqueCode, partyBefore];
+  db.query(sql, params)
+    .then(result => {
+      const update = result.rows[0];
+      console.log(update);
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

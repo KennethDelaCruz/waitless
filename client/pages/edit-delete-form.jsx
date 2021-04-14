@@ -20,11 +20,11 @@ class ReservationForm extends React.Component {
   }
 
   handleBefore(event) {
-    this.setState({ partyBefore: event.target.value });
+    this.setState({ partyBefore: parseInt(event.target.value) });
   }
 
   handleAfter(event) {
-    this.setState({ partyUpdate: event.target.value });
+    this.setState({ partyUpdate: parseInt(event.target.value) });
   }
 
   handleName(event) {
@@ -32,7 +32,7 @@ class ReservationForm extends React.Component {
   }
 
   handleCode(event) {
-    this.setState({ uniqueCode: event.target.value });
+    this.setState({ uniqueCode: event.target.value.toUpperCase() });
   }
 
   handleEdit() {
@@ -51,6 +51,10 @@ class ReservationForm extends React.Component {
       },
       body: JSON.stringify(data)
     };
+    fetch('/api/edit-reservation', req)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(err => console.error(err));
   }
 
   render() {

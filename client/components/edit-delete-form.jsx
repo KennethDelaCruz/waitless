@@ -9,7 +9,13 @@ function EditForm(props) {
           <label className="reservation-text update-text" htmlFor="update-name">Update Reservation for:</label><br />
           <input type="text" id="update-name" name="name" placeholder="Name.." onChange={props.handleName} required></input>
           <label className="reservation-text update-text" htmlFor="unique-code">Unique Code:</label>
-          <input type="text" id="unique-code" name="unique-code" placeholder="4 Digit/Letter Code" onChange={props.handleCode}></input>
+          <input type="text"
+                  id="unique-code"
+                  name="unique-code"
+                  placeholder="4 Digit/Letter Code"
+                  onChange={props.handleCode}
+                  minLength="4"
+                  maxLength="4"></input>
           <p className="reservation-text update-text">Party Size:</p>
           <div className="party-size-section">
             <div className="party-half">
