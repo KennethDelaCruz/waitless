@@ -20,8 +20,7 @@ app.put('/api/yelp-search', (req, res) => {
   };
   client.search(searchRequest)
     .then(response => {
-      const businesses = JSON.stringify(response.jsonBody.businesses, null, 4);
-      res.status(200).json(businesses);
+      res.status(200).json(response);
     })
     .catch(err => console.error(err));
 });

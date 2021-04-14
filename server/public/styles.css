@@ -4,7 +4,7 @@ body {
   padding: 0;
 }
 
-.header {
+header {
   display: flex;
   align-items: center;
   height: 60px;
@@ -16,6 +16,7 @@ body {
 
 .navigation {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -29,9 +30,77 @@ body {
   font-family: 'Lato', sans-serif;
   font-weight: bold;
   border-radius: 5px;
+  margin: 10px;
 }
 
-.fa-map-marker-alt {
+.nav-icons {
   font-size: 110px;
   color: rgb(110, 110, 110);
+}
+
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.restaurant-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  background-color: #e8eae6;
+  box-shadow: 2px 2px rgb(110, 110, 110);
+  margin: 5px;
+  padding: 20px 0;
+}
+
+.image-container {
+  height: 120px;
+  width: calc(92% / 3);
+  margin: 5px;
+}
+
+.description {
+  font-family: 'Lato', sans-serif;
+  color: #505050;
+  height: 100%;
+  width: calc((90% / 3) * 2);
+}
+
+.fa-star,
+.fa-star-half-alt {
+  font-size: 14px;
+}
+
+.hot-time {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  border-radius: 5px;
+  padding: 0 4px;
+}
+
+.short-wait {
+  background-color: #68ac5d;
+}
+
+.medium-wait {
+  background-color: ;
+}
+
+.description > p {
+  font-family: 'Lato', sans-serif;
+}
+
+.wait-time {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.restaurant-image {
+  height: 120px;
+  width: calc(92% / 3);
+  object-fit: cover;
+  margin: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgb(110, 110, 110);
 }

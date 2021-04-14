@@ -1,17 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Navigation from './components/navigation.jsx';
-import Header from './components/header.jsx'
-
+import parseRoute from './lib/parse-route.js';
+import Home from './pages/home.jsx';
+import Search from './pages/search.jsx';
+import Header from './components/header.jsx';
 
 class App extends React.Component {
-  render(){
+  constructor(props) {
+    super(props);
+    this.state = {
+      route: parseRoute(window.location.hash)
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', event => {
+      const parse = parseRoute(window.location.hash);
+      this.setState({ route: parse });
+    });
+  }
+
+  renderPage() {
+    const { route } = this.state;
+    if (route.path === '') {
+      return <Home />;
+    }
+    if (route.path === 'geosearch-restaurants') {
+      return <Search />;
+    }
+  }
+
+  render() {
     return (
       <>
         <Header />
-        <Navigation />
+        {this.renderPage()}
       </>
-    )
+    );
   }
 }
 

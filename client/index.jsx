@@ -5,4 +5,4 @@ import App from './app.jsx';
 ReactDOM.render(
   <App />,
   document.querySelector('#root')
-)
+);
