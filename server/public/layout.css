@@ -28,6 +28,10 @@
   .button-text {
     display: none;
   }
+
+  .update-container {
+    width:90%
+  }
 }
 
 @media screen and (min-width: 550px) {
@@ -41,6 +45,10 @@
 
   .form-container {
     width: 400px;
+  }
+
+  .update-container {
+    width:500px;
   }
 }
 

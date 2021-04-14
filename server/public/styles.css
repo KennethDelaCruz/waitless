@@ -189,17 +189,26 @@ header {
 }
 
 #name,
-#party-size {
+#party-size,
+#update-name,
+#unique-code,
+.party-select {
   border-radius: 5px;
   border: 0;
-  box-shadow: 4px 4px 4px rgb(110 110 110);
+  box-shadow: 4px 4px 4px rgba(110 110 110);
   height: 26px;
-  margin: 10px 0;
+  margin: 10px 0px 20px 0px;
   font-size: 18px;
+
 }
 
 #name {
   width: 100%;
+}
+
+#update-name,
+#unique-code {
+  width:100%;
 }
 
 #party-size {
@@ -277,4 +286,48 @@ header {
 
 .reservation-text {
   margin: 0;
+}
+
+.edit-container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: center;
+  width: 100%;
+  background-color: #e8eae6;
+  border-radius: 5px;
+  border: 0;
+  height: auto;
+  box-shadow: 4px 4px 4px rgb(110 110 110);
+}
+
+.update-form {
+  width: 90%;
+  padding: 20px 0px;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.update-text,
+.party-text {
+  font-size: 20px;
+  color: #505050;
+}
+
+.party-text {
+  margin-right: 10px
+}
+.party-size-section {
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+}
+.party-half {
+  width:50%;
 }

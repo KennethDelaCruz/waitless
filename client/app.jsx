@@ -3,6 +3,7 @@ import parseRoute from './lib/parse-route.js';
 import Home from './pages/home.jsx';
 import Search from './pages/search.jsx';
 import Header from './components/header.jsx';
+import ReservationForm from './pages/edit-delete-form.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,10 +24,16 @@ class App extends React.Component {
     const { route } = this.state;
     if (route.path === '') {
       return <Home />;
+    } else if (route.path === 'geosearch-restaurants') {
+      return (
+        <Search />
+      );
+    } else if (route.path === 'edit-reservation') {
+      return (
+        <ReservationForm />
+      );
     }
-    if (route.path === 'geosearch-restaurants') {
-      return <Search />;
-    }
+
   }
 
   render() {
