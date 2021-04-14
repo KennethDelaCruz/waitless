@@ -14,6 +14,10 @@ header {
   margin-bottom: 20px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .navigation {
   display: flex;
   flex-wrap: wrap;
@@ -52,6 +56,7 @@ header {
   box-shadow: 2px 2px rgb(110, 110, 110);
   margin: 5px;
   padding: 20px 0;
+  font-size: 1rem;
 }
 
 .image-container {
@@ -77,6 +82,7 @@ header {
   font-family: 'Lato', sans-serif;
   border-radius: 5px;
   padding: 0 4px;
+  font-size: 12px;
 }
 
 .short-wait {
@@ -84,7 +90,15 @@ header {
 }
 
 .medium-wait {
-  background-color: ;
+  background-color: orange;
+}
+
+.high-wait {
+  background-color: #dc0606;
+}
+
+.unavailable-time {
+  background-color: black;
 }
 
 .description > p {
@@ -94,6 +108,7 @@ header {
 .wait-time {
   margin: 5px 0;
   font-weight: bold;
+  font-size: 14px;
 }
 
 .restaurant-image {
@@ -103,4 +118,163 @@ header {
   margin: 5px 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgb(110, 110, 110);
+}
+
+.waitlist-button {
+  background-color: #7c9473;
+  box-shadow: 2px 2px 2px rgb(110, 110, 110);
+  font-family: 'Lato', sans-serif;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.form-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+  background-color: #e8eae6;
+  border-radius: 5px;
+  border: 0;
+  height: auto;
+  padding: 10px 0 30px 0;
+  box-shadow: 4px 4px 4px rgb(110 110 110);
+}
+
+.join-form {
+  width: 80%;
+}
+
+.join-form > h4 {
+  font-family: 'Spectral', sans-serif;
+  color: #7c9473;
+  font-size: 22px;
+  text-align: center;
+}
+
+.form-title {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-family: 'Spectral', sans-serif;
+  color: #505050;
+}
+
+.form-restaurant {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0 0 20px 0;
+}
+
+.join-form > label {
+  font-family: 'Latos', sans-serif;
+  color: #505050;
+  font-size: 20px;
+}
+
+#name,
+#party-size {
+  border-radius: 5px;
+  border: 0;
+  box-shadow: 4px 4px 4px rgb(110 110 110);
+  height: 26px;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+#name {
+  width: 100%;
+}
+
+#party-size {
+  margin-left: 10px;
+}
+
+.form-button {
+  width: 100%;
+  margin-top: 10px;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #7c9473;
+  box-shadow: 4px 4px 4px rgb(110 110 110);
+}
+
+.uniqueCode-block {
+  height: 100px;
+  width: 65%;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px rgb(110 110 110);
+  font-family: 'Spectral', sans-serif;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container > h2 {
+  width: 100%;
+  text-align: center;
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.unique-code {
+  font-size: 40px;
+  color: #505050;
+  margin: 0;
+}
+
+.party-description,
+.name-location {
+  font-family: 'Latos', sans-serif;
+}
+
+.name-location {
+  width: 65%;
+}
+
+.party-location {
+  width: 30%;
+}
+
+.reservation-text,
+.party-text,
+.code-title {
+  font-family: 'Spectral', sans-serif;
+  font-weight: bold;
+}
+
+.code-title {
+  margin: 10px 0 0 0;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.reservation-text {
+  margin: 0;
 }

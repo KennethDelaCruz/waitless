@@ -10,7 +10,7 @@ export default function geoSearch() {
       attributes: ['reservation'],
       longitude,
       latitude,
-      limit: 10
+      limit: 30
     };
     const searchRequest = {
       method: 'PUT',
@@ -22,7 +22,9 @@ export default function geoSearch() {
     fetch('api/yelp-search', searchRequest)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        const names = data.jsonBody.businesses.map(business => {
+          return business.name;
+        });
       })
       .catch(err => console.error(err));
   }
