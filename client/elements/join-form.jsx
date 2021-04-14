@@ -61,10 +61,10 @@ class JoinForm extends React.Component {
             <h2 className="form-restaurant form-title">{this.props.name}</h2>
             <label htmlFor="name">First Name:</label><br />
             <input type="text" id="name" name="name" required onChange={this.handleTextChange}></input><br />
-            <label htmlFor="party-size">Party for:</label><br />
+            <label htmlFor="party-size">Party Size:</label>
             <select id="party-size" onChange={this.handleSelectChange}>
-              <option value="none" selected disable>Choose Party Size</option>
-              <option value="1">1</option>
+              <option value="0" selected disabled></option>
+              <option value="1" >1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -83,11 +83,16 @@ class JoinForm extends React.Component {
     } else {
       return (
         <div className="form-container">
-          <h2 >{`Reservation for ${this.state.name}`}</h2>
-          <h2>{`at ${this.props.name}`}</h2>
-          <h2>{`Party of: ${this.state['party-size']}`}</h2>
+          <div className="name-location">
+            <p className="reservation-text">{`Reservation for: ${this.state.name}`}</p>
+            <p className="reservation-text">At <span className="underline">{`${this.props.name}`}</span></p>
+          </div>
+          <div className="party-description">
+            <p className="party-text">{`Party of: ${this.state['party-size']}`}</p>
+          </div>
+          <p className="code-title">Reservation Code</p>
           <div className="uniqueCode-block">
-            <h4 style={{ fontSize: '40px', color: '#505050' }}>
+            <h4 className="unique-code">
               {this.state['unique-code']}
             </h4>
           </div>
