@@ -1,25 +1,28 @@
 import React from 'react';
 
 function hotTimes(number) {
-  const integer = parseInt(number);
+  const minutes = number * 10;
+  const minuteRange = minutes + 20;
+  if (number === 0) {
+    return (
+      <span className="short-wait hot-time">No Wait!</span>
+    );
 
-  const rangeNumber = number + 20;
-  if (number < 30) {
+  } else if (minutes < 30) {
     return (
-      <span className="short-wait hot-time">{`${number} - ${rangeNumber} minutes`}</span>
+      <span className="short-wait hot-time">{`${minutes} - ${minuteRange} minutes`}</span>
     );
-  } else if (number < 60) {
+  } else if (minutes < 60) {
     return (
-      <span className="medium-wait hot-time">{`${number} - ${rangeNumber + 10} minutes`}</span>
+      <span className="medium-wait hot-time">{`${minutes} - ${minuteRange + 10} minutes`}</span>
     );
-  } else if (number >= 60) {
+  } else if (minutes >= 60) {
     return (
-      <span className="high-wait hot-time">{`${number} - ${rangeNumber + 20} minutes`}</span>
+      <span className="high-wait hot-time">{`${minutes} - ${minuteRange + 20} minutes`}</span>
     );
   } else {
     return (
-      <span className="unavailable-time hot-time">Waitlist is unavailable</span>
-
+      <span className="unavailable-time hot-time">unavailable</span>
     );
   }
 }

@@ -69,7 +69,7 @@ class Restaurant extends React.Component {
           <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>Join Waitlist</button>
         </div>
         <div onClick={() => this.modalClose()} className={this.state.toggle ? 'form-modal' : 'form-modal hidden'} >
-          <JoinForm name={this.props.info.name} />
+          <JoinForm name={this.props.info.name} restaurantId={this.state.restaurantId} />
         </div>
       </>
 

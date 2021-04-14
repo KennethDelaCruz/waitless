@@ -76,6 +76,21 @@ app.get('/api/waitlist/:Id', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/waitlist-reservation', (req, res, next) => {
+  const { name, partySize, restaurantId, uniqueCode } = req.body;
+  const sql = `
+  insert into "reservations" ("customerName", "partySize", "restaurantId", "uniqueCode")
+  values ($1, $2, $3, $4)
+  returning "customerName", "partySize", "createdAt"
+  `;
+  const params = [name, partySize, restaurantId, uniqueCode];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

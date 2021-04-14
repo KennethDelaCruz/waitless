@@ -1,4 +1,5 @@
 import React from 'react';
+import makeId from '../lib/unique-code';
 
 class JoinForm extends React.Component {
   constructor(props) {
@@ -14,19 +15,39 @@ class JoinForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleTextChange(event) {
+  componentDidMount() {
+    const code = makeId(4);
+    this.setState({ 'unique-code': code });
 
+  }
+
+  handleTextChange(event) {
     this.setState({ name: event.target.value });
   }
 
   handleSelectChange(event) {
     this.setState({ 'party-size': parseInt(event.target.value) });
-    console.log(typeof parseInt(event.target.value));
   }
 
   handleSubmit() {
     event.preventDefault();
-    console.log('this worked');
+    const data = {
+      name: this.state.name,
+      partySize: this.state['party-size'],
+      restaurantId: this.props.restaurantId,
+      uniqueCode: this.state['unique-code']
+    };
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    fetch('/api/waitlist-reservation', req)
+      .then(response => response.json())
+      .then(this.setState({ submitted: true }))
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -34,14 +55,15 @@ class JoinForm extends React.Component {
       return (
         <div className="form-container ">
           <form className="join-form" onSubmit={this.handleSubmit}>
-            <h4>
-              {'Join Waitlist for:'}
-              <span className="form-restaurant"> {this.props.name}</span>
-            </h4>
-            <label htmlFor="name">Name:</label><br />
+            <h2 className="form-title">
+              {'Join Waitlist for: '}
+            </h2>
+            <h2 className="form-restaurant form-title">{this.props.name}</h2>
+            <label htmlFor="name">First Name:</label><br />
             <input type="text" id="name" name="name" required onChange={this.handleTextChange}></input><br />
-            <label htmlFor="party-size">Pary for:</label><br />
+            <label htmlFor="party-size">Party for:</label><br />
             <select id="party-size" onChange={this.handleSelectChange}>
+              <option value="none" selected disable>Choose Party Size</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -53,10 +75,23 @@ class JoinForm extends React.Component {
               <option value="9">9</option>
               <option value="10">10</option>
             </select><br />
-            <button type="submit">Submit</button>
+            <button className="form-button" type="submit">Submit</button>
           </form>
         </div>
 
+      );
+    } else {
+      return (
+        <div className="form-container">
+          <h2 >{`Reservation for ${this.state.name}`}</h2>
+          <h2>{`at ${this.props.name}`}</h2>
+          <h2>{`Party of: ${this.state['party-size']}`}</h2>
+          <div className="uniqueCode-block">
+            <h4 style={{ fontSize: '40px', color: '#505050' }}>
+              {this.state['unique-code']}
+            </h4>
+          </div>
+        </div>
       );
     }
   }
