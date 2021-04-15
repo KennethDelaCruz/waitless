@@ -1,23 +1,28 @@
 import React from 'react';
-import EditForm from '../components/edit-delete-form.jsx';
+import EditForm from '../components/edit-form.jsx';
 import EditComplete from '../components/edit-complete.jsx';
+import DeleteForm from '../components/delete-form.jsx';
+import ErrorVisual from '../components/error.jsx';
+import DeleteComplete from '../components/delete-complete.jsx';
 
 class ReservationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      deleteOn: this.props.delete ? true : null,
       partySize: null,
       name: null,
       uniqueCode: null,
       submitted: false,
-      error: false,
+      errorObject: { ok: true, status: null },
       restaurantName: null
     };
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleRetry = this.handleRetry.bind(this);
   }
 
   handleUpdate(event) {
@@ -47,27 +52,80 @@ class ReservationForm extends React.Component {
       body: JSON.stringify(data)
     };
     fetch('/api/edit-reservation', req)
-      .then(response => response.json())
-      .then(data => {
-        const { restaurantName, partySize, customerName } = data;
-        this.setState({
-          restaurantName,
-          partySize,
-          name: customerName,
-          submitted: true
-        });
+      .then(response => {
+        if (response.ok) {
+          const data = response.json();
+          const { restaurantName, partySize, customerName } = data;
+          this.setState({
+            restaurantName,
+            partySize,
+            name: customerName,
+            submitted: true
+          });
+        } else {
+          const { ok, status, statusText } = response;
+          this.setState({ errorObject: { ok, status, statusText } });
+        }
       })
       .catch(err => console.error(err));
   }
 
+  handleDelete() {
+    event.preventDefault();
+    const { uniqueCode } = this.state;
+    const data = { uniqueCode };
+    const req = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    fetch('/api/delete-reservation', req)
+      .then(response => {
+        if (response.ok) {
+          this.setState({ submitted: true });
+        } else {
+          const { ok, status, statusText } = response;
+          this.setState({ errorObject: { ok, status, statusText } });
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
+  handleRetry() {
+    this.setState({
+      partySize: null,
+      name: null,
+      uniqueCode: null,
+      submitted: false,
+      errorObject: { ok: true, status: null, statusText: null },
+      restaurantName: null
+    });
+  }
+
   render() {
-    if (this.state.submitted) {
+    if (!this.state.errorObject.ok) {
+      return (
+        <ErrorVisual error={this.state.errorObject} reset={this.handleRetry}/>
+      );
+    } else if (this.state.submitted && this.state.deleteOn) {
+      return (
+        <DeleteComplete reset={this.handleRetry}/>
+      );
+    } else if (this.state.submitted) {
       return (
         <EditComplete info={this.state} />
       );
+    } else if (this.state.deleteOn) {
+      return (
+        <DeleteForm
+        handleSubmit={this.handleDelete}
+        handleCode={this.handleCode} />
+      );
+
     } else {
       return (
-
       <EditForm
         handleAfter={this.handleUpdate}
         handleCode={this.handleCode}

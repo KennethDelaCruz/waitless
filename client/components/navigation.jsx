@@ -11,6 +11,7 @@ class Navigation extends React.Component {
         </div>
         <div className="row column-full">
           <Button hash="#edit-reservation" icon={<i className="nav-icons fas fa-edit"></i>} />
+          <Button hash="#delete-reservation" icon={<i className="nav-icons fas fa-ban"></i>} />
         </div>
       </div>
     );

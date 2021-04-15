@@ -29,8 +29,9 @@
     display: none;
   }
 
-  .update-container {
-    width:90%
+  .update-container,
+  .error-container {
+    width: 90%;
   }
 }
 
@@ -47,8 +48,9 @@
     width: 400px;
   }
 
-  .update-container {
-    width:500px;
+  .update-container,
+  .error-container {
+    width: 500px;
   }
 }
 

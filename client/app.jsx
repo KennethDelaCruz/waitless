@@ -32,6 +32,10 @@ class App extends React.Component {
       return (
         <ReservationForm />
       );
+    } else if (route.path === 'delete-reservation') {
+      return (
+        <ReservationForm delete={true}/>
+      );
     }
 
   }

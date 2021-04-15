@@ -156,7 +156,8 @@ header {
   box-shadow: 4px 4px 4px rgb(110 110 110);
 }
 
-.join-form {
+.join-form,
+.error-section {
   width: 80%;
 }
 
@@ -267,7 +268,8 @@ header {
 
 .reservation-text,
 .party-text,
-.code-title {
+.code-title,
+.error-text {
   font-family: 'Spectral', sans-serif;
   font-weight: bold;
 }
@@ -294,7 +296,8 @@ header {
   align-items: center;
 }
 
-.update-container {
+.update-container,
+.error-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -351,4 +354,33 @@ header {
   margin-bottom: 10px;
   text-decoration: underline;
   width: 100%;
+}
+
+.cancel {
+  background-color: #dc0606;
+}
+
+.error-title {
+  font-size: 30px;
+  margin: 10px 0 20px 0;
+  font-weight: bold;
+  color: #505050;
+}
+
+.error-text {
+  font-size: 20px;
+  margin: 0;
+  color: #505050;
+}
+
+.error-back {
+  font-family: 'Latos', sans-serif;
+  float: right;
+  font-size: 13px;
+  font-weight: bold;
+  color: #505050;
+}
+
+.error-back:hover {
+  cursor: pointer;
 }
