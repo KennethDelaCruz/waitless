@@ -22,7 +22,7 @@ class JoinForm extends React.Component {
   }
 
   handleTextChange(event) {
-    this.setState({ name: event.target.value });
+    this.setState({ name: event.target.value.toUpperCase() });
   }
 
   handleSelectChange(event) {

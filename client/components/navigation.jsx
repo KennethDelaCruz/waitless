@@ -9,7 +9,9 @@ class Navigation extends React.Component {
           <Button hash="#geosearch-restaurants" icon={<i className="nav-icons fas fa-map-marker-alt"></i>} />
           <Button hash="#restaurants" handleClick={geoSearch} icon={<i className="nav-icons fas fa-utensils"></i>} />
         </div>
-
+        <div className="row column-full">
+          <Button hash="#edit-reservation" icon={<i className="nav-icons fas fa-edit"></i>} />
+        </div>
       </div>
     );
   }
