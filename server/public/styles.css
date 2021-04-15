@@ -352,3 +352,7 @@ header {
   text-decoration: underline;
   width: 100%;
 }
+
+.cancel {
+  background-color:#dc0606;
+}

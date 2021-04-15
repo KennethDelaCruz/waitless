@@ -1,12 +1,13 @@
 import React from 'react';
-import EditForm from '../components/edit-delete-form.jsx';
+import EditForm from '../components/edit-form.jsx';
 import EditComplete from '../components/edit-complete.jsx';
+import DeleteForm from '../components/delete-form.jsx';
 
 class ReservationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      deleteOn: this.props.delete ? true : null,
       partySize: null,
       name: null,
       uniqueCode: null,
@@ -18,6 +19,7 @@ class ReservationForm extends React.Component {
     this.handleName = this.handleName.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleUpdate(event) {
@@ -60,11 +62,36 @@ class ReservationForm extends React.Component {
       .catch(err => console.error(err));
   }
 
+  handleDelete() {
+    event.preventDefault();
+    const { uniqueCode } = this.state;
+    const data = { uniqueCode };
+    const req = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    fetch('/api/delete-reservation', req)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      });
+  }
+
   render() {
     if (this.state.submitted) {
       return (
         <EditComplete info={this.state} />
       );
+    } else if (this.state.deleteOn) {
+      return (
+        <DeleteForm
+        handleSubmit={this.handleDelete}
+        handleCode={this.handleCode} />
+      );
+
     } else {
       return (
 

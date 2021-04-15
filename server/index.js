@@ -112,15 +112,17 @@ app.put('/api/edit-reservation', (req, res, next) => {
 app.delete('/api/delete-reservation', (req, res, next) => {
   const { uniqueCode } = req.body;
   const sql = `
-  delete from "reservations
-  where "uniqueCode" = $1
-  returning *;
+  delete from "reservations"
+  where "uniqueCode" = $1;
   `;
   const params = [uniqueCode];
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        return res.sendStatus(404);
+        const response = {
+          Success: 'requested reservation deleted'
+        };
+        return res.status(404).json(response);
       } else {
         return res.sendStatus(204);
       }
