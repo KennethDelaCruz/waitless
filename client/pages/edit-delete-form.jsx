@@ -2,6 +2,7 @@ import React from 'react';
 import EditForm from '../components/edit-form.jsx';
 import EditComplete from '../components/edit-complete.jsx';
 import DeleteForm from '../components/delete-form.jsx';
+import ErrorVisual from '../components/error.jsx';
 
 class ReservationForm extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ReservationForm extends React.Component {
       name: null,
       uniqueCode: null,
       submitted: false,
-      error: false,
+      errorObject: { ok: true, status: null, statusText: null },
       restaurantName: null
     };
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -20,6 +21,7 @@ class ReservationForm extends React.Component {
     this.handleCode = this.handleCode.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleRetry = this.handleRetry.bind(this);
   }
 
   handleUpdate(event) {
@@ -49,7 +51,14 @@ class ReservationForm extends React.Component {
       body: JSON.stringify(data)
     };
     fetch('/api/edit-reservation', req)
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          response.json();
+        } else {
+          const { ok, status, statusText } = response;
+          this.setState({ errorObject: { ok, status, statusText } });
+        }
+      })
       .then(data => {
         const { restaurantName, partySize, customerName } = data;
         this.setState({
@@ -74,14 +83,35 @@ class ReservationForm extends React.Component {
       body: JSON.stringify(data)
     };
     fetch('/api/delete-reservation', req)
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          response.json();
+        } else {
+          const { ok, status, statusText } = response;
+          this.setState({ errorObject: { ok, status, statusText } });
+        }
+      })
       .then(data => {
-        console.log(data);
       });
   }
 
+  handleRetry() {
+    this.setState({
+      partySize: null,
+      name: null,
+      uniqueCode: null,
+      submitted: false,
+      errorObject: { ok: true, status: null, statusText: null },
+      restaurantName: null
+    });
+  }
+
   render() {
-    if (this.state.submitted) {
+    if (!this.state.errorObject.ok) {
+      return (
+        <ErrorVisual error={this.state.errorObject} reset={this.handleRetry}/>
+      );
+    } else if (this.state.submitted) {
       return (
         <EditComplete info={this.state} />
       );
@@ -94,7 +124,6 @@ class ReservationForm extends React.Component {
 
     } else {
       return (
-
       <EditForm
         handleAfter={this.handleUpdate}
         handleCode={this.handleCode}

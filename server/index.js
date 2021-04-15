@@ -103,8 +103,12 @@ app.put('/api/edit-reservation', (req, res, next) => {
   const params = [partySize, uniqueCode];
   db.query(sql, params)
     .then(result => {
-      const update = result.rows[0];
-      res.status(201).json(update);
+      if (result.rowCount === 1) {
+        const update = result.rows[0];
+        res.status(201).json(update);
+      } else {
+        res.sendStatus(404);
+      }
     })
     .catch(err => next(err));
 });
@@ -118,13 +122,13 @@ app.delete('/api/delete-reservation', (req, res, next) => {
   const params = [uniqueCode];
   db.query(sql, params)
     .then(result => {
-      if (!result.rows[0]) {
+      if (result.rowCount === 1) {
         const response = {
           Success: 'requested reservation deleted'
         };
-        return res.status(404).json(response);
+        return res.status(204).json(response);
       } else {
-        return res.sendStatus(204);
+        return res.sendStatus(404);
       }
     })
     .catch(err => next(err));
