@@ -105,7 +105,7 @@ app.put('/api/edit-reservation', (req, res, next) => {
     .then(result => {
       if (result.rowCount === 1) {
         const update = result.rows[0];
-        res.status(201).json(update);
+        res.status(200).json(update);
       } else {
         res.sendStatus(404);
       }
@@ -123,10 +123,7 @@ app.delete('/api/delete-reservation', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (result.rowCount === 1) {
-        const response = {
-          Success: 'requested reservation deleted'
-        };
-        return res.status(204).json(response);
+        return res.status(204);
       } else {
         return res.sendStatus(404);
       }

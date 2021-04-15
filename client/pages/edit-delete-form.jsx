@@ -14,7 +14,7 @@ class ReservationForm extends React.Component {
       name: null,
       uniqueCode: null,
       submitted: false,
-      errorObject: { ok: true, status: null, statusText: null },
+      errorObject: { ok: true, status: null },
       restaurantName: null
     };
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -54,20 +54,18 @@ class ReservationForm extends React.Component {
     fetch('/api/edit-reservation', req)
       .then(response => {
         if (response.ok) {
-          response.json();
+          const data = response.json();
+          const { restaurantName, partySize, customerName } = data;
+          this.setState({
+            restaurantName,
+            partySize,
+            name: customerName,
+            submitted: true
+          });
         } else {
           const { ok, status, statusText } = response;
           this.setState({ errorObject: { ok, status, statusText } });
         }
-      })
-      .then(data => {
-        const { restaurantName, partySize, customerName } = data;
-        this.setState({
-          restaurantName,
-          partySize,
-          name: customerName,
-          submitted: true
-        });
       })
       .catch(err => console.error(err));
   }
