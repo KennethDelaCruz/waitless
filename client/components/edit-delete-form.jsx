@@ -6,8 +6,7 @@ function EditForm(props) {
     <div className="edit-container">
       <div className="update-container">
         <form className="update-form" onSubmit={props.handleSubmit}>
-          <label className="reservation-text update-text" htmlFor="update-name">Update Reservation for:</label><br />
-          <input type="text" id="update-name" name="name" placeholder="Name.." onChange={props.handleName} required></input>
+          <p className="reservation-text update-text update-title" style={{ textAlign: 'center' }} htmlFor="update-name">Update Reservation</p>
           <label className="reservation-text update-text" htmlFor="unique-code">Unique Code:</label>
           <input type="text"
                   id="unique-code"
@@ -16,16 +15,9 @@ function EditForm(props) {
                   onChange={props.handleCode}
                   minLength="4"
                   maxLength="4"></input>
-          <p className="reservation-text update-text">Party Size:</p>
           <div className="party-size-section">
-            <div className="party-half">
-              <label className="party-text reservation-text" htmlFor="from-party">For:</label>
-              <Select id="from-party" class="party-select" handleChange={props.handleBefore}/>
-            </div>
-            <div className="party-half">
-              <label className="party-text reservation-text" htmlFor="to-party">To:</label>
-              <Select id="to-party" class="party-select" handleChange={props.handleAfter}/>
-            </div>
+            <label className="party-text reservation-text" htmlFor="to-party">New Party Size:</label>
+            <Select id="to-party" class="party-select" handleChange={props.handleAfter} />
           </div>
           <button type="submit" className="form-button">Submit</button>
         </form>

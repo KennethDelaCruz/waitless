@@ -92,20 +92,21 @@ app.post('/api/waitlist-reservation', (req, res, next) => {
 });
 
 app.put('/api/edit-reservation', (req, res, next) => {
-  const { name, partyBefore, partyUpdate, uniqueCode } = req.body;
+  const { partySize, uniqueCode } = req.body;
   const sql = `
   update "reservations"
   set "partySize" = $1
   from "restaurants"
-  where "customerName" = $2 AND "uniqueCode" = $3 AND "partySize" = $4
+  where "uniqueCode" = $2
   returning *
   `;
-  const params = [partyUpdate, name, uniqueCode, partyBefore];
+  const params = [partySize, uniqueCode];
   db.query(sql, params)
     .then(result => {
       const update = result.rows[0];
       res.status(200).json(update);
-    });
+    })
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);

@@ -7,26 +7,21 @@ class ReservationForm extends React.Component {
     super(props);
     this.state = {
 
-      partyBefore: null,
-      partyUpdate: null,
+      partySize: null,
       name: null,
       uniqueCode: null,
       submitted: false,
+      error: false,
       restaurantName: null
     };
-    this.handleBefore = this.handleBefore.bind(this);
-    this.handleAfter = this.handleAfter.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleCode = this.handleCode.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
   }
 
-  handleBefore(event) {
-    this.setState({ partyBefore: parseInt(event.target.value) });
-  }
-
-  handleAfter(event) {
-    this.setState({ partyUpdate: parseInt(event.target.value) });
+  handleUpdate(event) {
+    this.setState({ partySize: parseInt(event.target.value) });
   }
 
   handleName(event) {
@@ -39,11 +34,9 @@ class ReservationForm extends React.Component {
 
   handleEdit() {
     event.preventDefault();
-    const { name, partyBefore, partyUpdate, uniqueCode } = this.state;
+    const { partySize, uniqueCode } = this.state;
     const data = {
-      name,
-      partyBefore,
-      partyUpdate,
+      partySize,
       uniqueCode
     };
     const req = {
@@ -56,8 +49,13 @@ class ReservationForm extends React.Component {
     fetch('/api/edit-reservation', req)
       .then(response => response.json())
       .then(data => {
-        const { restaurantName } = data;
-        this.setState({ restaurantName, submitted: true });
+        const { restaurantName, partySize, customerName } = data;
+        this.setState({
+          restaurantName,
+          partySize,
+          name: customerName,
+          submitted: true
+        });
       })
       .catch(err => console.error(err));
   }
@@ -71,9 +69,7 @@ class ReservationForm extends React.Component {
       return (
 
       <EditForm
-        handleBefore={this.handleBefore}
-        handleAfter={this.handleAfter}
-        handleName={this.handleName}
+        handleAfter={this.handleUpdate}
         handleCode={this.handleCode}
         handleSubmit={this.handleEdit}
       />

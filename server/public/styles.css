@@ -329,6 +329,7 @@ header {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .party-half {
@@ -343,4 +344,11 @@ header {
   width: 100%;
   text-align: center;
   font-size: 24px;
+}
+
+.update-title {
+  font-size: 21px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  width: 100%;
 }
