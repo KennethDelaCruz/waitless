@@ -104,7 +104,26 @@ app.put('/api/edit-reservation', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       const update = result.rows[0];
-      res.status(200).json(update);
+      res.status(201).json(update);
+    })
+    .catch(err => next(err));
+});
+
+app.delete('/api/delete-reservation', (req, res, next) => {
+  const { uniqueCode } = req.body;
+  const sql = `
+  delete from "reservations
+  where "uniqueCode" = $1
+  returning *;
+  `;
+  const params = [uniqueCode];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.sendStatus(404);
+      } else {
+        return res.sendStatus(204);
+      }
     })
     .catch(err => next(err));
 });
