@@ -3,6 +3,7 @@ import EditForm from '../components/edit-form.jsx';
 import EditComplete from '../components/edit-complete.jsx';
 import DeleteForm from '../components/delete-form.jsx';
 import ErrorVisual from '../components/error.jsx';
+import DeleteComplete from '../components/delete-complete.jsx';
 
 class ReservationForm extends React.Component {
   constructor(props) {
@@ -85,14 +86,13 @@ class ReservationForm extends React.Component {
     fetch('/api/delete-reservation', req)
       .then(response => {
         if (response.ok) {
-          response.json();
+          this.setState({ submitted: true });
         } else {
           const { ok, status, statusText } = response;
           this.setState({ errorObject: { ok, status, statusText } });
         }
       })
-      .then(data => {
-      });
+      .catch(err => console.error(err));
   }
 
   handleRetry() {
@@ -110,6 +110,10 @@ class ReservationForm extends React.Component {
     if (!this.state.errorObject.ok) {
       return (
         <ErrorVisual error={this.state.errorObject} reset={this.handleRetry}/>
+      );
+    } else if (this.state.submitted && this.state.deleteOn) {
+      return (
+        <DeleteComplete reset={this.handleRetry}/>
       );
     } else if (this.state.submitted) {
       return (
