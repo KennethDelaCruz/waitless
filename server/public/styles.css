@@ -388,3 +388,14 @@ header {
 .error-back:hover {
   cursor: pointer;
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.loading {
+  width: 200px;
+  height: 200px;
+}

@@ -1,13 +1,14 @@
 import React from 'react';
 import StateSelect from '../elements/state-select.jsx';
 import RestaurantList from '../components/restaurant-list.jsx';
+import Loading from '../elements/loading.jsx';
 
 class StateSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       submitted: false,
-      isLoading: true,
+      isLoading: false,
       city: null,
       stateCode: null,
       restaurants: []
@@ -72,7 +73,7 @@ class StateSearch extends React.Component {
       );
     } else {
       return this.state.isLoading
-        ? <img style={{ width: '200px', height: '200px' }} src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif"></img>
+        ? <Loading />
         : <RestaurantList restaurants={this.state.restaurants} />;
     }
   }

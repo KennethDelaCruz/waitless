@@ -1,5 +1,6 @@
 import React from 'react';
 import RestaurantList from '../components/restaurant-list';
+import Loading from '../elements/loading.jsx';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class Search extends React.Component {
 
   render() {
     return this.state.isLoading
-      ? <img style={{ width: '200px', height: '200px' }}src="https://www.superiorlawncareusa.com/wp-content/uploads/2020/05/loading-gif-png-5.gif"></img>
+      ? <Loading />
       : <RestaurantList restaurants={this.state.restaurants}/>;
   }
 }
