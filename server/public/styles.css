@@ -193,7 +193,9 @@ header {
 #party-size,
 #update-name,
 #unique-code,
-.party-select {
+.party-select,
+.city-select,
+#city {
   border-radius: 5px;
   border: 0;
   box-shadow: 4px 4px 4px rgba(110 110 110);
@@ -207,7 +209,8 @@ header {
 }
 
 #update-name,
-#unique-code {
+#unique-code,
+#city {
   width: 100%;
 }
 
@@ -328,7 +331,8 @@ header {
   margin-right: 10px;
 }
 
-.party-size-section {
+.party-size-section,
+.state-select-section {
   width: 100%;
   display: flex;
   flex-wrap: wrap;

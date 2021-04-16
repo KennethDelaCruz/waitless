@@ -18,7 +18,7 @@ const db = new pg.Pool({
 app.use(staticMiddleware);
 
 app.use(express.json());
-app.put('/api/yelp-search', (req, res) => {
+app.put('/api/yelp-search/geolocation', (req, res) => {
   // req.headers.body contains lat and long
   const { longitude, latitude, limit } = req.body;
   const searchRequest = {
@@ -33,6 +33,21 @@ app.put('/api/yelp-search', (req, res) => {
       res.status(200).json(response);
     })
     .catch(err => console.error(err));
+});
+
+app.put('/api/yelp-search/city', (req, res, next) => {
+  const { attributes, location, limit } = req.body;
+  const searchRequest = {
+    attributes,
+    location,
+    limit,
+    radius: 10000
+  };
+  client.search(searchRequest)
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(err => next(err));
 });
 // this needs to be changed to post, for users to be able to add a new      reservation
 app.get('/api/restaurantId/:restaurant', (req, res, next) => {
