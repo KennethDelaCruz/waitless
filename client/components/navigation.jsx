@@ -6,8 +6,8 @@ class Navigation extends React.Component {
     return (
       <div className="navigation container" >
         <div className="row column-full">
-          <Button hash="#geosearch-restaurants" icon={<i className="nav-icons fas fa-map-marker-alt"></i>} />
-          <Button hash="#restaurants" handleClick={geoSearch} icon={<i className="nav-icons fas fa-utensils"></i>} />
+          <Button hash="#geosearch-search" icon={<i className="nav-icons fas fa-map-marker-alt"></i>} />
+          <Button hash="#city-state-search" handleClick={geoSearch} icon={<i className="nav-icons fas fa-street-view"></i>} />
         </div>
         <div className="row column-full">
           <Button hash="#edit-reservation" icon={<i className="nav-icons fas fa-edit"></i>} />

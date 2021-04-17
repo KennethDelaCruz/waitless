@@ -63,7 +63,7 @@ class JoinForm extends React.Component {
             <input type="text" id="name" name="name" required onChange={this.handleTextChange}></input><br />
             <label htmlFor="party-size">Party Size:</label>
             <select id="party-size" onChange={this.handleSelectChange}>
-              <option value="0" selected disabled></option>
+              <option defaultValue="0" disabled></option>
               <option value="1" >1</option>
               <option value="2">2</option>
               <option value="3">3</option>

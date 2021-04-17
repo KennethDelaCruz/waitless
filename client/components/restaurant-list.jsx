@@ -2,6 +2,7 @@ import React from 'react';
 import Rating from '../lib/rating.js';
 import hotTimes from '../lib/hot-times.js';
 import JoinForm from '../elements/join-form.jsx';
+import Loading from '../elements/loading.jsx';
 
 // create a new component for the form, and add a prop and state for the restaurnt
 // to tackle Restaurant wait time, add a Componentdidmount to fetch the api for the waittimes,
@@ -49,7 +50,7 @@ class Restaurant extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <p> loading....</p>;
+      return <Loading />;
     }
     return (
       <>
@@ -112,7 +113,7 @@ class RestaurantList extends React.Component {
         {this.props.restaurants.map((restaurant, i) => {
           return (
             <div key={i} onClick={() => this.handleClick(i)} className="column-half restaurant-card">
-              <Restaurant onClick={i => this.handleClick(i)} info={restaurant} buttonDisplay={this.buttonDisplay(i)}/>;
+              <Restaurant onClick={() => this.handleClick(i)} info={restaurant} buttonDisplay={this.buttonDisplay(i)}/>;
             </div>
           );
         })}
