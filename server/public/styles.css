@@ -407,3 +407,15 @@ header {
   height: 100px;
   align-self: center;
 }
+
+.search-title {
+  font-size: 30px;
+  font-family: 'Spectral', sans-serif;
+  color: #7c9473;
+  margin: 0;
+  font-weight: bold;
+}
+
+.search-header-container {
+  width: 100%;
+}
