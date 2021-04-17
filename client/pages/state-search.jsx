@@ -2,6 +2,7 @@ import React from 'react';
 import StateSelect from '../elements/state-select.jsx';
 import RestaurantList from '../components/restaurant-list.jsx';
 import Loading from '../elements/loading.jsx';
+import ErrorVisual from '../components/error.jsx';
 
 class StateSearch extends React.Component {
   constructor(props) {
@@ -56,9 +57,11 @@ class StateSearch extends React.Component {
   }
 
   render() {
-    if (this.state) {
-      if (!this.state.submitted) {
-        return (
+    if (this.state.error) {
+      return <ErrorVisual text="Looks like something went wrong..." />;
+    }
+    if (!this.state.submitted) {
+      return (
         <div className="edit-container">
           <div className="update-container">
             <form className="update-form" onSubmit={this.handleSubmit}>
@@ -77,12 +80,11 @@ class StateSearch extends React.Component {
             </form>
           </div>
         </div>
-        );
-      } else {
-        return this.state.isLoading
-          ? <Loading class={'loading-large'}/>
-          : <RestaurantList class="loading-container" restaurants={this.state.restaurants} />;
-      }
+      );
+    } else {
+      return this.state.isLoading
+        ? <Loading class={'loading-large'}/>
+        : <RestaurantList class="loading-container" restaurants={this.state.restaurants} />;
     }
   }
 }
