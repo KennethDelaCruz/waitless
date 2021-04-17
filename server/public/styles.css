@@ -392,10 +392,18 @@ header {
 .loading-container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-large {
+  width: 200px;
+  height: 200px;
   margin-top: 50px;
 }
 
-.loading {
-  width: 200px;
-  height: 200px;
+.loading-small {
+  width: 100px;
+  height: 100px;
+  align-self: center;
 }

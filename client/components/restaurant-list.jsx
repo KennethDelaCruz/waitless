@@ -50,7 +50,7 @@ class Restaurant extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <Loading />;
+      return <Loading class={'loading-small'}/>;
     }
     return (
       <>

@@ -107,7 +107,9 @@ class ReservationForm extends React.Component {
   render() {
     if (!this.state.errorObject.ok) {
       return (
-        <ErrorVisual error={this.state.errorObject} reset={this.handleRetry}/>
+        <ErrorVisual
+        reset={this.handleRetry}
+        text={'It looks like the Reservation you were looking for did not exist..'}/>
       );
     } else if (this.state.submitted && this.state.deleteOn) {
       return (
