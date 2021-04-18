@@ -118,6 +118,7 @@ app.put('/api/edit-reservation', (req, res, next) => {
   const params = [partySize, uniqueCode];
   db.query(sql, params)
     .then(result => {
+      console.log(result);
       if (result.rowCount === 1) {
         const update = result.rows[0];
         res.status(200).json(update);

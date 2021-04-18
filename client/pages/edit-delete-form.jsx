@@ -52,20 +52,15 @@ class ReservationForm extends React.Component {
       body: JSON.stringify(data)
     };
     fetch('/api/edit-reservation', req)
-      .then(response => {
-        if (response.ok) {
-          const data = response.json();
-          const { restaurantName, partySize, customerName } = data;
-          this.setState({
-            restaurantName,
-            partySize,
-            name: customerName,
-            submitted: true
-          });
-        } else {
-          const { ok, status, statusText } = response;
-          this.setState({ errorObject: { ok, status, statusText } });
-        }
+      .then(response => response.json())
+      .then(data => {
+        const { restaurantName, partySize, customerName } = data;
+        this.setState({
+          restaurantName,
+          partySize,
+          name: customerName,
+          submitted: true
+        });
       })
       .catch(err => console.error(err));
   }
