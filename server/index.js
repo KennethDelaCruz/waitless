@@ -139,7 +139,7 @@ app.delete('/api/delete-reservation', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (result.rowCount === 1) {
-        return res.status(204);
+        return res.sendStatus(204);
       } else {
         return res.sendStatus(404);
       }
