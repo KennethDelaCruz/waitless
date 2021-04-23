@@ -48,7 +48,7 @@ app.put('/api/yelp-search/city', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-// this needs to be changed to post, for users to be able to add a new      reservation
+
 app.get('/api/restaurantId/:restaurant', (req, res, next) => {
   const restaurant = req.params.restaurant;
   const sql = `

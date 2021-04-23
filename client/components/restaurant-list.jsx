@@ -4,10 +4,6 @@ import hotTimes from '../lib/hot-times.js';
 import JoinForm from '../elements/join-form.jsx';
 import Loading from '../elements/loading.jsx';
 
-// create a new component for the form, and add a prop and state for the restaurnt
-// to tackle Restaurant wait time, add a Componentdidmount to fetch the api for the waittimes,
-// and add another state that will determine when to render teh page/ loading or not loading etc..
-
 class Restaurant extends React.Component {
   constructor(props) {
     super(props);
