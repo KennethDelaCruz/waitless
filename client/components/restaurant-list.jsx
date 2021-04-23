@@ -49,8 +49,9 @@ class Restaurant extends React.Component {
   }
 
   render() {
+    const restaurant = this.props.info;
     if (this.state.isLoading) {
-      return <Loading />;
+      return <Loading class={'loading-small'}/>;
     }
     return (
       <>
@@ -65,6 +66,10 @@ class Restaurant extends React.Component {
           </p>
           <p style={{ margin: '5px 0px', fontSize: '12px' }}>
             {this.props.info.categories.map(i => `${i.title}, `)}
+          </p>
+          <p style={{ margin: '5px 0px', fontSize: '12px' }}>
+            {`${restaurant.location.address1} ${restaurant.location.city}, ${restaurant.location.state}`}
+
           </p>
           <p className="wait-time">Current Wait: {hotTimes(this.state.waitlist)}</p>
           <button className={this.props.buttonDisplay} onClick={() => this.handleJoin(this.props.info)}>Join Waitlist</button>
@@ -110,6 +115,10 @@ class RestaurantList extends React.Component {
   render() {
     return (
       <div className="container restaurant-list">
+        <div className="search-header-container">
+          <p className="search-title">Search Results:</p>
+
+        </div>
         {this.props.restaurants.map((restaurant, i) => {
           return (
             <div key={i} onClick={() => this.handleClick(i)} className="column-half restaurant-card">

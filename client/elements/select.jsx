@@ -3,7 +3,7 @@ import React from 'react';
 function Select(props) {
   return (
     <select id={props.id} className={props.class} onChange={props.handleChange}>
-      <option defaultValue="0" disabled></option>
+      <option value="0" selected></option>
       <option value="1" >1</option>
       <option value="2">2</option>
       <option value="3">3</option>

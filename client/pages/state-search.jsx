@@ -2,6 +2,7 @@ import React from 'react';
 import StateSelect from '../elements/state-select.jsx';
 import RestaurantList from '../components/restaurant-list.jsx';
 import Loading from '../elements/loading.jsx';
+import ErrorVisual from '../components/error.jsx';
 
 class StateSearch extends React.Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class StateSearch extends React.Component {
       isLoading: false,
       city: null,
       stateCode: null,
-      restaurants: []
+      restaurants: [],
+      error: null
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCity = this.handleCity.bind(this);
@@ -20,7 +23,7 @@ class StateSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ submitted: true });
+    this.setState({ submitted: true, isLoading: true });
     const location = `${this.state.city}, ${this.state.stateCode}`;
     const body = {
       attributes: ['reservation'],
@@ -39,7 +42,10 @@ class StateSearch extends React.Component {
       .then(data => {
         this.setState({ restaurants: data.jsonBody.businesses, isLoading: false });
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err);
+        this.setState({ error: true });
+      });
   }
 
   handleCity(event) {
@@ -51,6 +57,9 @@ class StateSearch extends React.Component {
   }
 
   render() {
+    if (this.state.error) {
+      return <ErrorVisual text="Looks like something went wrong..." />;
+    }
     if (!this.state.submitted) {
       return (
         <div className="edit-container">
@@ -61,7 +70,8 @@ class StateSearch extends React.Component {
               <input type="text"
                 id="city"
                 name="city"
-                onChange={this.handleCity}></input>
+                onChange={this.handleCity}
+                ></input>
               <div className="state-select-section">
                 <label className="party-text reservation-text" htmlFor="state-select">State:</label>
                 <StateSelect id="state-select" class="party-select" handleChange={this.handleState} />
@@ -73,8 +83,8 @@ class StateSearch extends React.Component {
       );
     } else {
       return this.state.isLoading
-        ? <Loading />
-        : <RestaurantList restaurants={this.state.restaurants} />;
+        ? <Loading class={'loading-large'}/>
+        : <RestaurantList class="loading-container" restaurants={this.state.restaurants} />;
     }
   }
 }

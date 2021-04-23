@@ -54,18 +54,20 @@ class ReservationForm extends React.Component {
     fetch('/api/edit-reservation', req)
       .then(response => {
         if (response.ok) {
-          const data = response.json();
-          const { restaurantName, partySize, customerName } = data;
-          this.setState({
-            restaurantName,
-            partySize,
-            name: customerName,
-            submitted: true
-          });
+          return response.json();
         } else {
-          const { ok, status, statusText } = response;
-          this.setState({ errorObject: { ok, status, statusText } });
+          console.log(response);
+          this.setState({ errorObject: { ok: false, status: response.status }, submitted: true });
         }
+      })
+      .then(data => {
+        const { restaurantName, partySize, customerName } = data;
+        this.setState({
+          restaurantName,
+          partySize,
+          name: customerName,
+          submitted: true
+        });
       })
       .catch(err => console.error(err));
   }
@@ -107,7 +109,9 @@ class ReservationForm extends React.Component {
   render() {
     if (!this.state.errorObject.ok) {
       return (
-        <ErrorVisual error={this.state.errorObject} reset={this.handleRetry}/>
+        <ErrorVisual
+        reset={this.handleRetry}
+        text={'It looks like the Reservation you were looking for did not exist..'}/>
       );
     } else if (this.state.submitted && this.state.deleteOn) {
       return (

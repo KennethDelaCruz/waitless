@@ -19,7 +19,6 @@ app.use(staticMiddleware);
 
 app.use(express.json());
 app.put('/api/yelp-search/geolocation', (req, res) => {
-  // req.headers.body contains lat and long
   const { longitude, latitude, limit } = req.body;
   const searchRequest = {
     attributes: ['reservation'],
@@ -112,7 +111,7 @@ app.put('/api/edit-reservation', (req, res, next) => {
   update "reservations"
   set "partySize" = $1
   from "restaurants"
-  where "uniqueCode" = $2
+  where "uniqueCode" = $2 AND "reservations"."restaurantId" = "restaurants"."restaurantId"
   returning *
   `;
   const params = [partySize, uniqueCode];
@@ -138,7 +137,7 @@ app.delete('/api/delete-reservation', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (result.rowCount === 1) {
-        return res.status(204);
+        return res.sendStatus(204);
       } else {
         return res.sendStatus(404);
       }
