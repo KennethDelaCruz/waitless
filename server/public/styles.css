@@ -42,10 +42,6 @@ header {
   color: rgb(110, 110, 110);
 }
 
-.nav-icons:hover {
-  cursor: pointer;
-}
-
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
@@ -422,4 +418,11 @@ header {
 
 .search-header-container {
   width: 100%;
+}
+
+.nav-icons:hover,
+.waitlist-button:hover,
+.form-button:hover,
+.party-select:hover {
+  cursor: pointer;
 }

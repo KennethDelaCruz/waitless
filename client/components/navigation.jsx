@@ -1,5 +1,4 @@
 import React from 'react';
-import { geoSearch } from '../lib';
 
 class Navigation extends React.Component {
   render() {
@@ -7,7 +6,7 @@ class Navigation extends React.Component {
       <div className="navigation container" >
         <div className="row column-full">
           <Button hash="#geosearch-search" icon={<i className="nav-icons fas fa-map-marker-alt"></i>} />
-          <Button hash="#city-state-search" handleClick={geoSearch} icon={<i className="nav-icons fas fa-street-view"></i>} />
+          <Button hash="#city-state-search" icon={<i className="nav-icons fas fa-street-view"></i>} />
         </div>
         <div className="row column-full">
           <Button hash="#edit-reservation" icon={<i className="nav-icons fas fa-edit"></i>} />
