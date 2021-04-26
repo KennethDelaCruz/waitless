@@ -42,6 +42,10 @@ header {
   color: rgb(110, 110, 110);
 }
 
+.nav-icons:hover {
+  cursor: pointer;
+}
+
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
