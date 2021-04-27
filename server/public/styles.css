@@ -419,3 +419,10 @@ header {
 .search-header-container {
   width: 100%;
 }
+
+.nav-icons:hover,
+.waitlist-button:hover,
+.form-button:hover,
+.party-select:hover {
+  cursor: pointer;
+}
