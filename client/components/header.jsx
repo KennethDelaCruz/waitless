@@ -14,7 +14,7 @@ export default class Header extends React.Component {
       <header>
         <div className="column-full container">
           <a href="#">
-            <img className="logo" src="/images/waitless.png"></img>
+            <img className="logo" src="/images/waitless.png" alt="waitless-app-logo"></img>
           </a>
         </div>
       </header>

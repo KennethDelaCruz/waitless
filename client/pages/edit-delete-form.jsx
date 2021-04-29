@@ -56,7 +56,6 @@ class ReservationForm extends React.Component {
         if (response.ok) {
           return response.json();
         } else {
-          console.log(response);
           this.setState({ errorObject: { ok: false, status: response.status }, submitted: true });
         }
       })

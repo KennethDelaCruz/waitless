@@ -42,6 +42,10 @@ header {
   color: rgb(110, 110, 110);
 }
 
+.logo {
+  width: 200px;
+}
+
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
