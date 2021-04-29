@@ -57,6 +57,7 @@ header {
   margin: 5px;
   padding: 20px 0;
   font-size: 1rem;
+  height: auto;
 }
 
 .image-container {
@@ -420,9 +421,21 @@ header {
   width: 100%;
 }
 
-.nav-icons:hover,
+.buttons:hover,
 .waitlist-button:hover,
-.form-button:hover,
+.form-button:hover {
+  cursor: pointer;
+  transform: scale(1.025);
+}
+
+#party-size:hover,
 .party-select:hover {
   cursor: pointer;
+}
+
+.buttons:active,
+.waitlist-button:active,
+.form-button:active,
+.party-select:active {
+  transform: translateY(0.1rem) translateX(0.1rem);
 }
