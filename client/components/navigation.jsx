@@ -4,7 +4,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <div className="navigation container" >
-        <div className="row column-half">
+        <div className="row column-full">
           <Button hash="#geosearch-search" icon={<i className="nav-icons fas fa-map-marker-alt"></i>} />
           <Button hash="#city-state-search" icon={<i className="nav-icons fas fa-street-view"></i>} />
         </div>
