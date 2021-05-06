@@ -53,7 +53,7 @@ class StateSearch extends React.Component {
   }
 
   handleState(event) {
-    this.setState({ state: event.target.value.toLowerCase() });
+    this.setState({ stateCode: event.target.value.toLowerCase() });
   }
 
   render() {
