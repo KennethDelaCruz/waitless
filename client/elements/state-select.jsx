@@ -2,7 +2,7 @@ import React from 'react';
 
 function StateSelect(props) {
   return (
-    <select id={props.id} className={props.class} onChange={props.handleChange}>
+    <select id={props.id} className={props.class} onChange={props.handleChange} required>
       <option defaultValue=""></option>
       <option value="AL">AL</option>
       <option value="AK">AK</option>
