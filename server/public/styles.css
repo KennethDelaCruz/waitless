@@ -394,10 +394,6 @@ header {
   color: #505050;
 }
 
-.error-back:hover {
-  cursor: pointer;
-}
-
 .loading-container {
   display: flex;
   justify-content: center;
@@ -437,7 +433,9 @@ header {
 }
 
 #party-size:hover,
-.party-select:hover {
+.party-select:hover,
+.error-back:hover,
+.restaurant-card:hover {
   cursor: pointer;
 }
 
