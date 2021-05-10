@@ -35,8 +35,14 @@ header {
 }
 
 .nav-icons {
-  font-size: 110px;
+  font-size: 100px;
   color: rgb(110, 110, 110);
+}
+
+.button-text {
+  width: 100%;
+  margin: 10px 0 0 0;
+  font-size: 16px;
 }
 
 .logo {
@@ -388,10 +394,6 @@ header {
   color: #505050;
 }
 
-.error-back:hover {
-  cursor: pointer;
-}
-
 .loading-container {
   display: flex;
   justify-content: center;
@@ -431,7 +433,9 @@ header {
 }
 
 #party-size:hover,
-.party-select:hover {
+.party-select:hover,
+.error-back:hover,
+.restaurant-card:hover {
   cursor: pointer;
 }
 

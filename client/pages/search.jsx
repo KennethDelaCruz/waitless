@@ -49,6 +49,8 @@ export default class Search extends React.Component {
           console.error(err);
           this.setState({ error: true });
         });
+    }, () => {
+      window.location.hash = '#city-state-search';
     });
 
   }

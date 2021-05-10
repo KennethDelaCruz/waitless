@@ -90,6 +90,22 @@ app.get('/api/waitlist/:Id', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/restaurantId/:restaurant', (req, res, next) => {
+  const restaurant = req.params.restaurant;
+  const sql = `
+  insert into "restaurants" ("restaurantName")
+  values ($1)
+  returning *;
+  `;
+  const params = [restaurant];
+  db.query(sql, params)
+    .then(result => {
+      const newId = result.rows[0];
+      res.status(201).json(newId);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/waitlist-reservation', (req, res, next) => {
   const { name, partySize, restaurantId, uniqueCode } = req.body;
   const sql = `

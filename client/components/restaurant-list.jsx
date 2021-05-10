@@ -13,6 +13,8 @@ class Restaurant extends React.Component {
       waitlist: null,
       isLoading: true
     };
+    this.handleCurrentWait = this.handleCurrentWait.bind(this);
+    this.newRestaurant = this.newRestaurant.bind(this);
   }
 
   handleJoin(restaurant) {
@@ -25,14 +27,43 @@ class Restaurant extends React.Component {
     }
   }
 
-  componentDidMount() {
+  newRestaurant() {
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    fetch(`/api/restaurantId/${this.props.info.name}`, req)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          this.setState({ waitlist: undefined });
+        }
+      })
+      .then(data => {
+        const { restaurantId } = data;
+        this.setState({ restaurantId });
+        this.handleCurrentWait();
+      });
+  }
+
+  handleCurrentWait() {
     fetch(`/api/restaurantId/${this.props.info.name}`)
       .then(response => response.json())
       .then(data => {
         const { restaurantId } = data;
         this.setState({ restaurantId });
         fetch(`/api/waitlist/${this.state.restaurantId}`)
-          .then(response => response.json())
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              this.newRestaurant();
+            }
+
+          })
           .then(data => {
             const waitlist = parseInt(data.count);
             this.setState({ waitlist, isLoading: false });
@@ -42,6 +73,10 @@ class Restaurant extends React.Component {
         console.error(err);
       });
 
+  }
+
+  componentDidMount() {
+    this.handleCurrentWait();
   }
 
   render() {
