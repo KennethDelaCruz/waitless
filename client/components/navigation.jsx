@@ -25,7 +25,7 @@ function Button(props) {
         <button className="buttons" onClick={props.handleClick}>
         {props.icon}
         <br />
-        <p style={{ width: '100%', margin: '10px 0px 0px 0px', fontSize: '16px' }}>{props.text}</p>
+        <p style={{ width: '100%', margin: '10px 0px 0px 0px', fontSize: '16px', color: '#505050', fontWeight: 600 }}>{props.text}</p>
         </button>
     </a>
   );

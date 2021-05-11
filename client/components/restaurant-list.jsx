@@ -51,19 +51,18 @@ class Restaurant extends React.Component {
 
   handleCurrentWait() {
     fetch(`/api/restaurantId/${this.props.info.name}`)
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 404) {
+          this.newRestaurant();
+        } else {
+          return response.json();
+        }
+      })
       .then(data => {
         const { restaurantId } = data;
         this.setState({ restaurantId });
         fetch(`/api/waitlist/${this.state.restaurantId}`)
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              this.newRestaurant();
-            }
-
-          })
+          .then(response => response.json())
           .then(data => {
             const waitlist = parseInt(data.count);
             this.setState({ waitlist, isLoading: false });
