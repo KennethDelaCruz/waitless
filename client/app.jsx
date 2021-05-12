@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import parseRoute from './lib/parse-route.js';
 import Home from './pages/home.jsx';
 import Search from './pages/search.jsx';
@@ -6,53 +6,36 @@ import Header from './components/header.jsx';
 import ReservationForm from './pages/edit-delete-form.jsx';
 import StateSearch from './pages/state-search.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      route: parseRoute(window.location.hash)
-    };
-  }
+function App() {
+  const [route, setRoute] = useState(parseRoute(window.location.hash));
 
-  componentDidMount() {
+  useEffect(() => {
     window.addEventListener('hashchange', event => {
-      const parse = parseRoute(window.location.hash);
-      this.setState({ route: parse });
+      setRoute(parseRoute(window.location.hash));
     });
-  }
+  });
 
-  renderPage() {
-    const { route } = this.state;
+  function renderPage() {
     if (route.path === '') {
       return <Home />;
     } else if (route.path === 'geosearch-search') {
-      return (
-        <Search geoLocation={true}/>
-      );
+      return <Search geolocation={true} />;
     } else if (route.path === 'edit-reservation') {
-      return (
-        <ReservationForm />
-      );
+      return <ReservationForm />;
     } else if (route.path === 'delete-reservation') {
-      return (
-        <ReservationForm delete={true}/>
-      );
+      return <ReservationForm delete={true} />;
     } else if (route.path === 'city-state-search') {
-      return (
-        <StateSearch />
-      );
+      return <StateSearch />;
     }
-
   }
 
-  render() {
-    return (
-      <>
-        <Header />
-        {this.renderPage()}
-      </>
-    );
-  }
+  return (
+    <>
+      <Header />
+      {renderPage()}
+    </>
+  );
+
 }
 
 export default App;
