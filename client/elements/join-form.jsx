@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import makeId from '../lib/unique-code';
 
 function JoinForm(props) {
   const [submit, setSubmit] = useState(false);
   const [name, setName] = useState(null);
   const [partySize, setPartySize] = useState(null);
-  const [uniqueCode, setUniqueCode] = useState(null);
-
-  useEffect(() => {
-    const code = makeId(4);
-    setUniqueCode(code);
-  });
+  const [uniqueCode] = useState(makeId(4));
 
   function handleTextChange(event) {
     setName(event.target.value.toUpperCase());
