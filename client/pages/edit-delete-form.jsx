@@ -37,9 +37,13 @@ class ReservationForm extends React.Component {
     this.setState({ uniqueCode: event.target.value.toUpperCase() });
   }
 
-  handleEdit() {
+  handleEdit(object) {
     event.preventDefault();
-    const { partySize, uniqueCode } = this.state;
+    const { partySize, uniqueCode } = object;
+
+    // THIS NEEDS TO BE CHANGED WHEN WE REFACTOR TO HOOKS
+    // THE UNIQUECODE
+    this.setState({ uniqueCode });
     const data = {
       partySize,
       uniqueCode
