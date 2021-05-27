@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Rating from '../lib/rating.js';
 import hotTimes from '../lib/hot-times.js';
 import JoinForm from '../elements/join-form.jsx';
@@ -114,30 +114,30 @@ class Restaurant extends React.Component {
 }
 
 function RestaurantList(props) {
-  const [selected, setSelected] = useState(null);
+  // const [selected, setSelected] = useState(null);
 
-  function handleClick(i) {
-    const targets = [
-      'column-half restaurant-card',
-      'description',
-      'restaurant-image'
-    ];
-    if (targets.includes(event.target.className)) {
-      if (selected === i) {
-        setSelected(null);
-      } else {
-        setSelected(i);
-      }
-    }
-  }
+  // function handleClick(i) {
+  //   const targets = [
+  //     'column-half restaurant-card',
+  //     'description',
+  //     'restaurant-image'
+  //   ];
+  //   if (targets.includes(event.target.className)) {
+  //     if (selected === i) {
+  //       setSelected(null);
+  //     } else {
+  //       setSelected(i);
+  //     }
+  //   }
+  // }
 
-  function buttonDisplay(i) {
-    if (selected === i) {
-      return 'waitlist-button';
-    } else {
-      return 'waitlist-button';
-    }
-  }
+  // function buttonDisplay(i) {
+  //   if (selected === i) {
+  //     return 'waitlist-button';
+  //   } else {
+  //     return 'waitlist-button';
+  //   }
+  // }
 
   return (
     <div className="container restaurant-list">
@@ -147,8 +147,8 @@ function RestaurantList(props) {
       </div>
       {props.restaurants.map((restaurant, i) => {
         return (
-          <div key={i} onClick={() => handleClick(i)} className="column-half restaurant-card">
-            <Restaurant onClick={() => handleClick(i)} info={restaurant} buttonDisplay={buttonDisplay(i)} />
+          <div key={i} className="column-half restaurant-card">
+            <Restaurant info={restaurant} buttonDisplay={'waitlist-button'} />
           </div>
         );
       })}
