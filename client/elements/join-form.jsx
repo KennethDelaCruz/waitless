@@ -50,7 +50,7 @@ function JoinForm(props) {
             <label htmlFor="party-size">Party Size:</label>
             <select id="party-size" onChange={handleSelectChange}>
               <option defaultValue="0" disabled></option>
-              <option value="1" >1</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
