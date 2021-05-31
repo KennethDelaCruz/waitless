@@ -31,8 +31,12 @@ function ReservationForm(props) {
     setUniqueCode(event.target.value.toUpperCase());
   }
 
-  function handleEdit() {
+  function handleEdit(object) {
     event.preventDefault();
+    const { partySize, uniqueCode } = object;
+    setUniqueCode(uniqueCode)
+    // THIS NEEDS TO BE CHANGED WHEN WE REFACTOR TO HOOKS
+    // THE UNIQUECODE
     const data = {
       partySize,
       uniqueCode

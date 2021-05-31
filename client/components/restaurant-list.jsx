@@ -115,6 +115,7 @@ class Restaurant extends React.Component {
 
 function RestaurantList(props) {
 
+
   /* the functions was used to render the 'JOIN WAITLIST' button
   but since all Restaurant-cards are showing the button, the following functions are not needed anymore.
   Leaving in comment just in case needed later.
@@ -144,6 +145,7 @@ function RestaurantList(props) {
     }
   } */
 
+
   return (
     <div className="container restaurant-list">
       <div className="search-header-container">
@@ -166,29 +168,30 @@ function RestaurantList(props) {
 //     super(props);
 //     this.state = { selected: null };
 
-// }
+//   }
 
-// handleClick(i) {
+//   handleClick(i) {
 
-//   if (event.target.className === 'column-half restaurant-card' ||
-//   event.target.className === 'description' ||
-//   event.target.className === 'restaurant-image') {
+//     if (event.target.className === 'column-half restaurant-card' ||
+//     event.target.className === 'description' ||
+//     event.target.className === 'restaurant-image') {
+//       if (this.state.selected === i) {
+//         this.setState({ selected: null });
+//       } else {
+//         this.setState({ selected: i });
+//       }
+//     }
+
+//   }
+
+//   buttonDisplay(i) {
 //     if (this.state.selected === i) {
-//       this.setState({ selected: null });
+//       return 'waitlist-button';
 //     } else {
-//       this.setState({ selected: i });
+//       return 'waitlist-button hidden';
 //     }
 //   }
 
-// }
-
-// buttonDisplay(i) {
-//   if (this.state.selected === i) {
-//     return 'waitlist-button';
-//   } else {
-//     return 'waitlist-button hidden';
-//   }
-// }
 
 //   render() {
 //     return (
