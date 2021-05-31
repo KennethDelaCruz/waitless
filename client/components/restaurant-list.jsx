@@ -113,53 +113,101 @@ class Restaurant extends React.Component {
   }
 }
 
-class RestaurantList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { selected: null };
+function RestaurantList(props) {
 
-  }
+  /* the functions was used to render the 'JOIN WAITLIST' button
+  but since all Restaurant-cards are showing the button, the following functions are not needed anymore.
+  Leaving in comment just in case needed later.
 
-  handleClick(i) {
+  const [selected, setSelected] = useState(null);
 
-    if (event.target.className === 'column-half restaurant-card' ||
-    event.target.className === 'description' ||
-    event.target.className === 'restaurant-image') {
-      if (this.state.selected === i) {
-        this.setState({ selected: null });
+  function handleClick(i) {
+    const targets = [
+      'column-half restaurant-card',
+      'description',
+      'restaurant-image'
+    ];
+    if (targets.includes(event.target.className)) {
+      if (selected === i) {
+        setSelected(null);
       } else {
-        this.setState({ selected: i });
+        setSelected(i);
       }
     }
-
   }
 
-  buttonDisplay(i) {
-    if (this.state.selected === i) {
+  function buttonDisplay(i) {
+    if (selected === i) {
       return 'waitlist-button';
     } else {
-      return 'waitlist-button hidden';
+      return 'waitlist-button';
     }
-  }
+  } */
 
-  render() {
-    return (
-      <div className="container restaurant-list">
-        <div className="search-header-container">
-          <p className="search-title">Search Results:</p>
+  return (
+    <div className="container restaurant-list">
+      <div className="search-header-container">
+        <p className="search-title">Search Results:</p>
 
-        </div>
-        {this.props.restaurants.map((restaurant, i) => {
-          return (
-            <div key={i} onClick={() => this.handleClick(i)} className="column-half restaurant-card">
-              <Restaurant onClick={() => this.handleClick(i)} info={restaurant} buttonDisplay={this.buttonDisplay(i)}/>;
-            </div>
-          );
-        })}
       </div>
-    );
-  }
-
+      {props.restaurants.map((restaurant, i) => {
+        return (
+          <div key={i} className="column-half restaurant-card">
+            <Restaurant info={restaurant} buttonDisplay={'waitlist-button'} />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
+
+// class RestaurantList extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { selected: null };
+
+// }
+
+// handleClick(i) {
+
+//   if (event.target.className === 'column-half restaurant-card' ||
+//   event.target.className === 'description' ||
+//   event.target.className === 'restaurant-image') {
+//     if (this.state.selected === i) {
+//       this.setState({ selected: null });
+//     } else {
+//       this.setState({ selected: i });
+//     }
+//   }
+
+// }
+
+// buttonDisplay(i) {
+//   if (this.state.selected === i) {
+//     return 'waitlist-button';
+//   } else {
+//     return 'waitlist-button hidden';
+//   }
+// }
+
+//   render() {
+//     return (
+//       <div className="container restaurant-list">
+//         <div className="search-header-container">
+//           <p className="search-title">Search Results:</p>
+
+//         </div>
+//         {this.props.restaurants.map((restaurant, i) => {
+//           return (
+//             <div key={i} onClick={() => this.handleClick(i)} className="column-half restaurant-card">
+//               <Restaurant onClick={() => this.handleClick(i)} info={restaurant} buttonDisplay={this.buttonDisplay(i)}/>;
+//             </div>
+//           );
+//         })}
+//       </div>
+//     );
+//   }
+
+// }
 
 export default RestaurantList;
