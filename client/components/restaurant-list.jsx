@@ -115,7 +115,6 @@ class Restaurant extends React.Component {
 
 function RestaurantList(props) {
 
-
   /* the functions was used to render the 'JOIN WAITLIST' button
   but since all Restaurant-cards are showing the button, the following functions are not needed anymore.
   Leaving in comment just in case needed later.
@@ -144,7 +143,6 @@ function RestaurantList(props) {
       return 'waitlist-button';
     }
   } */
-
 
   return (
     <div className="container restaurant-list">
@@ -191,7 +189,6 @@ function RestaurantList(props) {
 //       return 'waitlist-button hidden';
 //     }
 //   }
-
 
 //   render() {
 //     return (
