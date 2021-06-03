@@ -34,7 +34,7 @@ function ReservationForm(props) {
   function handleEdit(object) {
     event.preventDefault();
     const { partySize, uniqueCode } = object;
-    setUniqueCode(uniqueCode)
+    setUniqueCode(uniqueCode);
     // THIS NEEDS TO BE CHANGED WHEN WE REFACTOR TO HOOKS
     // THE UNIQUECODE
     const data = {
@@ -66,15 +66,14 @@ function ReservationForm(props) {
       .catch(err => console.error(err));
   }
 
-  function handleDelete() {
+  function handleDelete(formObject) {
     event.preventDefault();
-    const data = { uniqueCode };
     const req = {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(formObject)
     };
     fetch('/api/delete-reservation', req)
       .then(response => {
