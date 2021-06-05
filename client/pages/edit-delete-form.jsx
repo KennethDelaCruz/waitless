@@ -68,12 +68,13 @@ function ReservationForm(props) {
 
   function handleDelete(formObject) {
     event.preventDefault();
+    const data = formObject;
     const req = {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formObject)
+      body: JSON.stringify(data)
     };
     fetch('/api/delete-reservation', req)
       .then(response => {
