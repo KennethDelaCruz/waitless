@@ -115,35 +115,6 @@ class Restaurant extends React.Component {
 
 function RestaurantList(props) {
 
-  /* the functions was used to render the 'JOIN WAITLIST' button
-  but since all Restaurant-cards are showing the button, the following functions are not needed anymore.
-  Leaving in comment just in case needed later.
-
-  const [selected, setSelected] = useState(null);
-
-  function handleClick(i) {
-    const targets = [
-      'column-half restaurant-card',
-      'description',
-      'restaurant-image'
-    ];
-    if (targets.includes(event.target.className)) {
-      if (selected === i) {
-        setSelected(null);
-      } else {
-        setSelected(i);
-      }
-    }
-  }
-
-  function buttonDisplay(i) {
-    if (selected === i) {
-      return 'waitlist-button';
-    } else {
-      return 'waitlist-button';
-    }
-  } */
-
   return (
     <div className="container restaurant-list">
       <div className="search-header-container">
