@@ -1,6 +1,6 @@
-const ClientError = require('./client-error')
+const ClientError = require('./client-error');
 
-function errorMiddleware(err,req,res,next) {
+function errorMiddleware(err, req, res, next) {
   if (err instanceof ClientError) {
     res.status(err.status).json({
       error: err.message
@@ -9,8 +9,8 @@ function errorMiddleware(err,req,res,next) {
     console.error(err);
     res.status(500).json({
       error: 'an unexpected error occurred'
-    })
+    });
   }
 }
 
-module.exports = errorMiddleware
+module.exports = errorMiddleware;
